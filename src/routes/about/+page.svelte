@@ -2,7 +2,7 @@
     let name = "Svelte!!!";
 </script>
 <h1>
-    Welcome to our page!
+    About our app!
 </h1>
 <p>
     Visit  {name.toUpperCase()}
