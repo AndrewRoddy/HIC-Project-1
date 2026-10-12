@@ -15,6 +15,7 @@
   <img src={full_bagel_path} />
   <div class="text-area">
     <h1>{name}</h1>
+    <h1>Bagel</h1>
     <h3>${price}</h3>
   </div>
 </div>
