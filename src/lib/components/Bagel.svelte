@@ -11,14 +11,14 @@
   let full_bagel_path = bagel_path + img;
 </script>
 
-<div class="container">
-  <img src={full_bagel_path} />
+<button class="container">
+  <img src={full_bagel_path} class="bagel-image" />
   <div class="text-area">
     <h1>{name}</h1>
     <h1>Bagel</h1>
     <h3>${price}</h3>
   </div>
-</div>
+</button>
 
 <style>
   .container {
@@ -28,18 +28,29 @@
     /* Centers bagel */
     text-align: center;
 
+    /* Removes the button border */
+    border: 0;
+
     /* Makes the div resize to the size of the text/bagel */
     display: inline-block;
 
     background-color: #ff922f;
+
     padding: 1em;
     border-radius: 1em;
+  }
 
-    /* Sets the image size */
-    img {
-      width: 15em;
-      height: 15em;
+  .container:hover {
+    background-color: #ffad2f;
+    .bagel-image {
+      transform: scale(1.05);
     }
+  }
+
+  .bagel-image {
+    width: 15em;
+    height: 15em;
+    transition: all 0.1s ease;
   }
 
   .text-area {

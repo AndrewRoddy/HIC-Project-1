@@ -5,9 +5,7 @@
     'src/lib/assets/bagels/Cinnamon-Raisin-Bagel.webp';
 </script>
 
-<h1>
-  About our app using {name}
-</h1>
+<h1 class="center">Buy a bagel!</h1>
 
 <div class="bagel-bin">
   <Bagel
@@ -76,5 +74,9 @@ Test
   .bagel-bin {
     text-align: center;
     justify-content: center;
+  }
+
+  .center {
+    text-align: center;
   }
 </style>
