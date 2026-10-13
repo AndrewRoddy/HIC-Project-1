@@ -31,7 +31,7 @@
   }
 </script>
 
-<h1 class="page-header">My Cart</h1>
+<h1 class="center" id="cart-title">My Cart</h1>
 
 <div class="cart">
   <section class="cart-items" aria-labelledby="cart-title">
@@ -123,7 +123,7 @@
     padding: 24px;
     background-color: var(--surface);
     border-radius: 1em;
-    color: var(--text);
+    color: var(--accent);
   }
 
   .controls {
@@ -174,6 +174,71 @@
     border-radius: 1em;
     background-color: var(--accent);
     cursor: pointer;
+  }
+
+  .cart {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 40px;
+    align-items: start;
+    padding: 1em;
+  }
+
+  .cart-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .cart-summary {
+    padding: 24px;
+    background-color: var(--surface);
+    border-radius: 1em;
+    color: var(--text);
+  }
+
+  .controls {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .quantity {
+    width: 105px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid var(--accent);
+    border-radius: 1em;
+    padding: 4px;
+    margin-bottom: 4px;
+  }
+
+  .quantity button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--accent);
+    font-size: 22px;
+    cursor: pointer;
+  }
+
+  .quantity button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  .quantity span {
+    min-width: 20 px;
+    text-align: center;
+    color: var(--text);
   }
 
   .checkout-button {

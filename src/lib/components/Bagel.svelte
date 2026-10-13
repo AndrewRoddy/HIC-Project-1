@@ -22,8 +22,8 @@
         <h1>Bagel</h1>
         <h2>${price.toFixed(2)}</h2>
       </div>
-    </div>
-  </button>
+    </div></button
+  >
 </a>
 
 <style>
