@@ -1,6 +1,7 @@
 <script lang="ts">
   import favicon from '$lib/assets/favicon.svg';
   import Icon from '../lib/components/Icon.svelte';
+  import { cost } from '../lib/state/cost.svelte.js';
 
   let { children } = $props();
 </script>
@@ -14,7 +15,10 @@
     <a href="./">bagl</a>
     <a href="./order">order</a>
     <a href="./rewards">rewards</a>
-    <a href="./cart"><Icon name={'cart'} /></a>
+    <a href="./cart" class="price-container">
+      <Icon name={'cart'} />
+      <div class="price">${cost.total}</div>
+    </a>
   </navbar>
 
   <content>
@@ -52,17 +56,29 @@
       color: #ff922f;
       font-size: 3em;
       text-decoration: none;
+      display: flex;
     }
     a:hover {
       color: #ffad2f;
     }
   }
 
+  .price {
+    font-size: 0.5em;
+  }
+  .price-container {
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    gap: 0.1em;
+  }
+
   footer {
     margin: 0em;
     padding: 0em;
     text-align: center;
-    background-color: #28280;
+    background-color: #282820;
+    color: #ebdbb2;
   }
 
   content {
