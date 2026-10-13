@@ -43,14 +43,14 @@
     /* Makes the div resize to the size of the text/bagel */
     display: inline-block;
 
-    background-color: #ff922f;
+    background-color: var(--accent);
 
     padding: 1em;
     border-radius: 1em;
   }
 
   .container:hover {
-    background-color: #ffad2f;
+    background-color: var(--accent-hover);
     .bagel-image {
       transform: scale(1.05);
     }

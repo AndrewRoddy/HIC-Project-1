@@ -1,0 +1,21 @@
+:root {
+	--bg-deep: #1d1d17;
+	--bg: #282820;
+	--surface: #33332a;
+	--surface-hover: #3e3d33;
+	--border: #504e42;
+
+	--text: #ebdbb2;
+	--text-muted: #a89984;
+	--text-subtle: #7c6f64;
+
+	--accent: #ff922f;
+	--accent-hover: #ffa857;
+	--accent-pressed: #d97a1f;
+	--secondary: #83a598;
+
+	--success: #a9b665;
+	--error: #ea6962;
+	--warning: #e9b143;
+	--info: #7daea3;
+}

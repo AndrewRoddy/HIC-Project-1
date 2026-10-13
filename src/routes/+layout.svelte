@@ -23,7 +23,11 @@
     <a href="./order">order</a>
     <a href="./rewards">rewards</a>
     <a href="./cart" class="price-container">
-      <Icon name={'cart'} />
+      <Icon
+        name={'cart'}
+        fillColor="var(--accent)"
+        hoverColor="var(--accent-hover)"
+      />
       <div class="price">${ready ? cost.total : '...'}</div>
     </a>
   </navbar>
@@ -46,27 +50,31 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: var(--bg);
   }
 
   navbar {
     margin: 0em;
     padding: 0.5em;
     justify-content: center;
-    background-color: #282820;
     display: flex;
     gap: 2em;
     text-align: center;
     align-content: center;
-    color: #ff922f;
+
+    /* Navbar colors */
+    background-color: var(--bg-deep);
+    border-bottom: 0.5px solid var(--border);
+    color: var(--accent);
 
     a {
-      color: #ff922f;
+      color: var(--accent);
       font-size: 3em;
       text-decoration: none;
       display: flex;
     }
     a:hover {
-      color: #ffad2f;
+      color: var(--accent-hover);
     }
   }
 
@@ -86,8 +94,10 @@
     margin: 0em;
     padding: 0em;
     text-align: center;
-    background-color: #282820;
-    color: #ebdbb2;
+    background-color: var(--bg-deep);
+    color: var(--text);
+    background-color: var(--bg-deep);
+    border-top: 0.5px solid var(--border);
   }
 
   content {

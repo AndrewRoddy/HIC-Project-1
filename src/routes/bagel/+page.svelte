@@ -1,4 +1,5 @@
 <script lang="ts">
+  import '../../app.css';
   import { page } from '$app/state';
   const path = $derived(page.url.searchParams.get('path'));
   const name = $derived(page.url.searchParams.get('name'));
@@ -31,14 +32,14 @@
     /* Makes the div resize to the size of the text/bagel */
     display: inline-block;
 
-    background-color: #ff922f;
+    background-color: var(--accent);
 
     padding: 1em;
     border-radius: 1em;
   }
 
   .container:hover {
-    background-color: #ffad2f;
+    background-color: var(--accent-hover);
     .bagel-image {
       transform: scale(1.05);
     }

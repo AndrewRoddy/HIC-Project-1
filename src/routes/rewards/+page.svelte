@@ -1,37 +1,37 @@
+<script lang="ts">
+  import '../../app.css';
+</script>
+
 <div class="rewards">
-    <div class="motto">
-        <h1>Eat bagels. Earn rewards. Get free dough.</h1>
-    </div>
+  <div class="motto">
+    <h1>Eat bagels. Earn rewards. Get free dough.</h1>
+  </div>
 
-    <div class="sign">
-        <button class="sign-up">
-            SIGN UP NOW
-        </button>
-    </div>
-
+  <div class="sign">
+    <button class="sign-up"> SIGN UP NOW </button>
+  </div>
 </div>
 
-
 <style>
-    .motto {
-        font-family: 'Open Sans';
-        font-size: 2em;
-        text-align: center;
-    }
+  .motto {
+    font-family: 'Times New Roman';
+    font-size: 2em;
+    text-align: center;
+  }
 
-    .sign {
-        text-align: center;
-    }
+  .sign {
+    text-align: center;
+  }
 
-    .sign-up {
-        background-color: #ff922f;
-        font-family: 'Open Sans';
-        font-size: 2em;
-        border-radius: .5em;
-    }
+  .sign-up {
+    background-color: var(--accent);
+    font-family: 'Times New Roman';
+    font-size: 2em;
+    border-radius: 0.5em;
+    border: 0;
+  }
 
-    .sign-up:hover {
-        transform: scale(1.05);
-    }
+  .sign-up:hover {
+    transform: scale(1.05);
+  }
 </style>
-
