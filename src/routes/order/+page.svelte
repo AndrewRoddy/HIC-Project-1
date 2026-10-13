@@ -58,10 +58,6 @@
 </div>
 
 <style>
-  p {
-    color: goldenrod;
-  }
-
   .bagel-bin {
     text-align: center;
     justify-content: center;
@@ -69,5 +65,9 @@
 
   .center {
     text-align: center;
+  }
+
+  h1 {
+    color: var(--text);
   }
 </style>
