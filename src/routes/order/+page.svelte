@@ -38,8 +38,16 @@
     name="Honey Wholewheat"
     price={9.5}
   />
-  <Bagel img="Onion-Bagel.webp" name="Onion" price={9.5} />
-  <Bagel img="Plain-Bagel.webp" name="Plain" price={9.5} />
+  <Bagel 
+    img="Onion-Bagel.webp" 
+    name="Onion" 
+    price={9.5} 
+  />
+  <Bagel 
+    img="Plain-Bagel.webp" 
+    name="Plain" 
+    price={9.5} 
+  />
   <Bagel
     img="Poppyseed-Bagel.webp"
     name="Poppyseed"

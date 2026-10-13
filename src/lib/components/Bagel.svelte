@@ -24,7 +24,7 @@
     <div class="text-area">
       <h1>{name}</h1>
       <h1>Bagel</h1>
-      <h3>${price}</h3>
+      <h3>${price.toFixed(2)}</h3>
     </div>
   </button>
 </a>
