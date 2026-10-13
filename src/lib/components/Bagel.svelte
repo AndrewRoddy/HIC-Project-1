@@ -23,8 +23,10 @@
     <img src={full_bagel_path} class="bagel-image" />
     <div class="text-area">
       <h1>{name}</h1>
-      <h1>Bagel</h1>
-      <h3>${price.toFixed(2)}</h3>
+      <div>
+        <h1>Bagel</h1>
+        <h2>${price.toFixed(2)}</h2>
+      </div>
     </div>
   </button>
 </a>
@@ -43,16 +45,17 @@
     /* Makes the div resize to the size of the text/bagel */
     display: inline-block;
 
-    background-color: var(--accent);
+    background-color: var(--surface);
+    border: 0.5px solid var(--border);
 
     padding: 1em;
     border-radius: 1em;
   }
 
   .container:hover {
-    background-color: var(--accent-hover);
+    background-color: var(--surface-hover);
     .bagel-image {
-      transform: scale(1.05);
+      transform: scale(1.1);
     }
   }
 
@@ -66,11 +69,19 @@
     color: white;
     gap: 1em;
     text-align: center;
+  }
 
-    h1,
-    h3 {
-      margin: 0;
-      padding: 0;
-    }
+  h1 {
+    margin: 0;
+    padding: 0;
+    color: var(--text);
+    font-family: 'Times New Roman';
+  }
+
+  h2 {
+    margin: 0;
+    padding: 0;
+    color: var(--text-muted);
+    font-family: 'Times New Roman';
   }
 </style>
