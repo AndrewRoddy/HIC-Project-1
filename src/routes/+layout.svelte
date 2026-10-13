@@ -22,7 +22,7 @@
   </content>
 
   <footer>
-    <h1>Amazing Footer!</h1>
+    <h1>BAGL</h1>
   </footer>
 </page>
 
@@ -59,10 +59,12 @@
   }
 
   footer {
+    font-family: 'Open Sans';
+    font-size: 5em;
     margin: 0em;
     padding: 0em;
     text-align: center;
-    background-color: #28280;
+    background-color: #eeeeee;
   }
 
   content {
