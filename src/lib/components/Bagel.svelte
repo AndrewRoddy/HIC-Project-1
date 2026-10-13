@@ -8,7 +8,7 @@
   } = $props();
 
   // Builds the bagel path
-  let bagel_path = 'src/lib/assets/bagels/';
+  let bagel_path = '/bagels/';
   let full_bagel_path = bagel_path + img;
 
   function buyBagel() {
@@ -16,14 +16,18 @@
   }
 </script>
 
-<button class="container" onclick={buyBagel}>
-  <img src={full_bagel_path} class="bagel-image" />
-  <div class="text-area">
-    <h1>{name}</h1>
-    <h1>Bagel</h1>
-    <h3>${price}</h3>
-  </div>
-</button>
+<a
+  href="./bagel?path={full_bagel_path}&name={name}&price={price}"
+>
+  <button class="container" onclick={buyBagel}>
+    <img src={full_bagel_path} class="bagel-image" />
+    <div class="text-area">
+      <h1>{name}</h1>
+      <h1>Bagel</h1>
+      <h3>${price}</h3>
+    </div>
+  </button>
+</a>
 
 <style>
   .container {

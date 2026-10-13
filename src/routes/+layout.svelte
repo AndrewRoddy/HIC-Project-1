@@ -1,4 +1,5 @@
 <script lang="ts">
+  import '../app.css';
   import favicon from '$lib/assets/favicon.svg';
   import Icon from '../lib/components/Icon.svelte';
   import { cost } from '../lib/state/cost.svelte.js';
