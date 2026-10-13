@@ -3,6 +3,7 @@
   import { page } from '$app/state';
   import Bagel from '$lib/components/Bagel.svelte';
   import { cost } from '$lib/state/cost.svelte.js';
+
   const path = $derived(
     page.url.searchParams.get('path')?.split('/').pop() ||
       'Cinnamon-Raisin-Bagel.webp'

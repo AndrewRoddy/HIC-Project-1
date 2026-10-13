@@ -31,7 +31,7 @@
   }
 </script>
 
-<h1 class="center" id="cart-title">My Cart</h1>
+<h1 class="page-header">My Cart</h1>
 
 <div class="cart">
   <section class="cart-items" aria-labelledby="cart-title">
@@ -174,6 +174,11 @@
     border-radius: 1em;
     background-color: var(--accent);
     cursor: pointer;
+  }
+
+  .page-header {
+    text-align: left;
+    padding-left: 0.75em;
   }
 
   .cart {
