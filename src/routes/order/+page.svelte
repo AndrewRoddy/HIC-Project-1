@@ -57,15 +57,6 @@
   />
 </div>
 
-<p>
-  Visit {name.toUpperCase()}
-  <a href="https://svelte.dev/docs/kit"
-    >svelte.dev/docs/kit</a
-  >
-  to read the documentation
-</p>
-Test
-
 <style>
   p {
     color: goldenrod;

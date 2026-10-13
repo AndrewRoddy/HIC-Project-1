@@ -1,5 +1,6 @@
 <script lang="ts">
   import favicon from '$lib/assets/favicon.svg';
+  import Icon from '../lib/components/Icon.svelte';
 
   let { children } = $props();
 </script>
@@ -10,9 +11,10 @@
 
 <page>
   <navbar>
-    <a href="./">Home</a>(h)
-    <a href="./order">Order</a>(o)
-    <a href="./rewards">Rewards</a>(r)
+    <a href="./">bagl</a>
+    <a href="./order">order</a>
+    <a href="./rewards">rewards</a>
+    <a href="./cart"><Icon name={'cart'} /></a>
   </navbar>
 
   <content>
@@ -39,14 +41,20 @@
     margin: 0em;
     padding: 0.5em;
     justify-content: center;
-    background-color: #eeeeee;
+    background-color: #282820;
     display: flex;
-    gap: 1em;
+    gap: 2em;
     text-align: center;
     align-content: center;
+    color: #ff922f;
 
     a {
+      color: #ff922f;
       font-size: 3em;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #ffad2f;
     }
   }
 
@@ -54,7 +62,7 @@
     margin: 0em;
     padding: 0em;
     text-align: center;
-    background-color: #eeeeee;
+    background-color: #28280;
   }
 
   content {
