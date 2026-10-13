@@ -31,7 +31,7 @@
     }
 </script>
 
-<h1 class="center" id="cart-title">My Cart</h1>
+<h1 class="page-header">My Cart</h1>
 
 <div class="cart">
     <section class="cart-items" aria-labelledby="cart-title">
@@ -97,8 +97,9 @@
         color: var(--text);
     }
 
-    .center {
-        text-align: center;
+    .page-header {
+        text-align: left;
+        padding-left: 0.75em;
     }
 
     .cart {
@@ -120,7 +121,7 @@
 
     .cart-summary {
         padding: 24px;
-        background-color: var(--accent);
+        background-color: var(--surface);
         border-radius: 1em;
         color: var(--text);
     }
@@ -180,7 +181,7 @@
         height: 38px;
         border: none;
         border-radius: 1em;
-        background-color: var(--text);
+        background-color: var(--accent);
         cursor: pointer;
     }
 </style>
