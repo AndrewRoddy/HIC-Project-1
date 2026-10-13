@@ -10,7 +10,7 @@
 
 <p>BAGELPAGE</p>
 <button class="container" onclick={buyBagel}>
-  <img src={path} class="bagel-image" />
+  <img src={path} class="bagel-image" alt=""/>
   <div class="text-area">
     <h1>{name}</h1>
     <h1>Bagel</h1>
