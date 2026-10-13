@@ -2,8 +2,14 @@
   import favicon from '$lib/assets/favicon.svg';
   import Icon from '../lib/components/Icon.svelte';
   import { cost } from '../lib/state/cost.svelte.js';
+  import { onMount } from 'svelte';
 
   let { children } = $props();
+
+  // Loads in the cost variable
+  // True if page loaded cost
+  let ready = $state(false);
+  onMount(() => (ready = true));
 </script>
 
 <svelte:head>
@@ -17,7 +23,7 @@
     <a href="./rewards">rewards</a>
     <a href="./cart" class="price-container">
       <Icon name={'cart'} />
-      <div class="price">${cost.total}</div>
+      <div class="price">${ready ? cost.total : '...'}</div>
     </a>
   </navbar>
 
