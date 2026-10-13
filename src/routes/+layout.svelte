@@ -89,7 +89,7 @@
   }
 
   footer {
-    font-family: 'Open Sans';
+    flex-grow: 1;
     font-size: 5em;
     margin: 0em;
     padding: 0em;

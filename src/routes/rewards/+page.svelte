@@ -8,15 +8,17 @@
   </div>
 
   <div class="sign">
-    <button class="sign-up"> SIGN UP NOW </button>
+    <button class="sign-up" onclick={signUp}> SIGN UP NOW </button>
   </div>
 </div>
+
 
 <style>
   .motto {
     font-family: 'Times New Roman';
     font-size: 2em;
     text-align: center;
+    color: var(--text);
   }
 
   .sign {
