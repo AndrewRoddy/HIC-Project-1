@@ -9,7 +9,6 @@
   // Builds the bagel path
   let bagel_path = '/bagels/';
   let full_bagel_path = bagel_path + img;
-
 </script>
 
 <a
