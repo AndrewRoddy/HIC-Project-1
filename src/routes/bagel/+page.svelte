@@ -2,8 +2,7 @@
   import '../../app.css';
   import { page } from '$app/state';
   import Bagel from '$lib/components/Bagel.svelte';
-  import { cost } from '$lib/state/cost.svelte.js';
-  import { buyBagel } from '$lib/state/cart.svelte.js';
+  import { buyBagel } from '$lib/state/cart.svelte';
 
   const path = $derived(
     page.url.searchParams.get('path')?.split('/').pop() ||

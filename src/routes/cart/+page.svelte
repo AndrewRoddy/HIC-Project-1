@@ -51,7 +51,7 @@
           </div>
         </li>
       {:else}
-        <li style="color: var(--info);">
+        <li style="color: var(--info); padding: 0.75em;">
           Your cart is empty.
         </li>
       {/each}
