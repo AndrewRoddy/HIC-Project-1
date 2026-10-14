@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { resolve } from '$app/paths';
   // Passed in properties for the bagel
   let {
     id,
@@ -8,15 +9,14 @@
   } = $props();
 
   // Builds the bagel path
-  let bagel_path = '/bagels/';
-  let full_bagel_path = bagel_path + img;
+  const full_bagel_path = $derived('/bagels/' + img);
 </script>
 
 <a
-  href="./bagel?id={id}&path={full_bagel_path}&name={name}&price={price}"
+  href="{resolve('/bagel')}?id={id}&path={full_bagel_path}&name={name}&price={price}"
 >
   <button class="container">
-    <img src={full_bagel_path} class="bagel-image" />
+    <img src={full_bagel_path} class="bagel-image" alt="{name}"/>
     <div class="text-area">
       <h1>{name}</h1>
       <div>
