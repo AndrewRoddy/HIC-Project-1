@@ -2,7 +2,7 @@
   import Bagel from '../../lib/components/Bagel.svelte';
 </script>
 
-<h1 class="page-header">Buy a bagel!</h1>
+<h1 class="page-header">Buy a Bagel</h1>
 
 <div class="bagel-bin">
   <Bagel
