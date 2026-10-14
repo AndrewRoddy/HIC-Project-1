@@ -3,6 +3,7 @@
   import { page } from '$app/state';
   import Bagel from '$lib/components/Bagel.svelte';
   import { cost } from '$lib/state/cost.svelte.js';
+  import { buyBagel } from '$lib/state/cart.svelte.js';
 
   const path = $derived(
     page.url.searchParams.get('path')?.split('/').pop() ||
@@ -14,22 +15,34 @@
   const price = $derived(
     Number(page.url.searchParams.get('price') ?? 99.99)
   );
-
-  function buyBagel() {
-    cost.total += price;
-  }
+  const id = $derived(
+    Number(page.url.searchParams.get('id'))
+  );
 </script>
 
 <h1 class="page-header">Bagel Info</h1>
 
 <div class="bagel-section">
-  <Bagel img={path} {name} {price} />
+  <Bagel
+   id={id}
+   img={path} 
+   {name} 
+   {price} 
+  />
 
   <button
     class="add-to-cart-button"
     type="button"
-    onclick={buyBagel}>Add to Cart</button
-  >
+    disabled={!page.url.searchParams.get('id')}
+    onclick={() => buyBagel({
+      id,
+      name,
+      img: path,
+      price
+    })}
+  > 
+    Add to Cart
+  </button>
 </div>
 
 <style>

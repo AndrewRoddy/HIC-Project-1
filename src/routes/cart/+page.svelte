@@ -1,34 +1,14 @@
 <script lang="ts">
   import Bagel from '$lib/components/Bagel.svelte';
-  import { cost } from '$lib/state/cost.svelte.js';
-  let items = $state([
-    {
-      id: 1,
-      name: 'Ancient Grain Bagel',
-      img: 'Ancient-Grain-Bagel.webp',
-      price: 9.5,
-      quantity: 1
-    },
-    {
-      id: 2,
-      name: 'Plain Bagel',
-      img: 'Plain-Bagel.webp',
-      price: 9.5,
-      quantity: 3
-    }
-  ]);
+  import {
+    cart, 
+    removeItem,
+    countItems,
+    getPrice
+  } from '$lib/state/cart.svelte';
 
-  function removeItem(id: number) {
-    items = items.filter((item) => item.id !== id);
-  }
-
-  function countItems() {
-    let sum = 0;
-    for (let i: number = 0; i < items.length; i++) {
-      sum += items[i].quantity;
-    }
-    return sum;
-  }
+  const itemCount = $derived(countItems());
+  const total = $derived(getPrice());
 </script>
 
 <h1 class="page-header">My Cart</h1>
@@ -36,9 +16,10 @@
 <div class="cart">
   <section class="cart-items" aria-labelledby="cart-title">
     <ul class="cart-list">
-      {#each items as item (item.id)}
+      {#each cart.items as item (item.id)}
         <li class="cart-item">
           <Bagel
+            id={item.id}
             img={item.img}
             name={item.name}
             price={item.price}
@@ -84,9 +65,9 @@
     <h2 id="summary-title">Order Summary</h2>
     <p>
       Item Quantity:
-      {countItems()}
+      {itemCount}
     </p>
-    <p>Subtotal: ${cost.total.toFixed(2)}</p>
+    <p>Subtotal: ${total.toFixed(2)}</p>
     <button class="checkout-button" type="button"
       >Checkout</button
     >
@@ -115,6 +96,7 @@
     margin: 0;
     padding: 0;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 40px;
   }
