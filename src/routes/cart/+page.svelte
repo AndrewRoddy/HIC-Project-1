@@ -6,6 +6,7 @@
     countItems,
     getPrice
   } from '$lib/state/cart.svelte';
+  import { resolve } from '$app/paths';
 
   const itemCount = $derived(countItems());
   const total = $derived(getPrice());
@@ -51,7 +52,7 @@
           </div>
         </li>
       {:else}
-        <li style="color: var(--info); padding: 0.75em;">
+        <li style="color: var(--text-muted); padding: 0.75em;">
           Your cart is empty.
         </li>
       {/each}
@@ -64,23 +65,29 @@
   >
     <h2 id="summary-title">Order Summary</h2>
     <p>
-      Item Quantity:
+      Items Quantity:
       {itemCount}
     </p>
     <p>Subtotal: ${total.toFixed(2)}</p>
-    <button class="checkout-button" type="button"
-      >Checkout</button
-    >
+    <a href="{resolve("/checkout")}">
+        <button 
+            class="checkout-button" 
+            type="button"
+            disabled={total===0}
+        >Checkout</button>
+    </a>
   </aside>
 </div>
 
 <style>
-  h1 {
-    color: var(--text);
-  }
-
   h2 {
     color: var(--text);
+  }  
+  
+  .page-header {
+    color: var(--text);
+    text-align: left;
+    padding-left: 0.75em;
   }
 
   .cart {
@@ -105,7 +112,7 @@
     padding: 24px;
     background-color: var(--surface);
     border-radius: 1em;
-    color: var(--accent);
+    color: var(--text);
   }
 
   .controls {
@@ -126,6 +133,7 @@
     border-radius: 1em;
     padding: 4px;
     margin-bottom: 4px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
 
   .quantity button {
@@ -156,76 +164,7 @@
     border-radius: 1em;
     background-color: var(--accent);
     cursor: pointer;
-  }
-
-  .page-header {
-    text-align: left;
-    padding-left: 0.75em;
-  }
-
-  .cart {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 300px;
-    gap: 40px;
-    align-items: start;
-    padding: 1em;
-  }
-
-  .cart-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    gap: 40px;
-  }
-
-  .cart-summary {
-    padding: 24px;
-    background-color: var(--surface);
-    border-radius: 1em;
-    color: var(--text);
-  }
-
-  .controls {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .quantity {
-    width: 105px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    border: 1px solid var(--accent);
-    border-radius: 1em;
-    padding: 4px;
-    margin-bottom: 4px;
-  }
-
-  .quantity button {
-    width: 32px;
-    height: 32px;
-    border: none;
-    border-radius: 50%;
-    background-color: var(--accent);
-    font-size: 22px;
-    cursor: pointer;
-  }
-
-  .quantity button:disabled {
-    opacity: 0.35;
-    cursor: not-allowed;
-  }
-
-  .quantity span {
-    min-width: 20 px;
-    text-align: center;
-    color: var(--text);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
 
   .checkout-button {
@@ -235,5 +174,11 @@
     border-radius: 1em;
     background-color: var(--accent);
     cursor: pointer;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  .checkout-button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
   }
 </style>

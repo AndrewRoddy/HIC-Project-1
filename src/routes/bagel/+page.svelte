@@ -63,5 +63,6 @@
     border-radius: 1em;
     background-color: var(--accent);
     cursor: pointer;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
 </style>
