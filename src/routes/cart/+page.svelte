@@ -1,7 +1,7 @@
 <script lang="ts">
   import Bagel from '$lib/components/Bagel.svelte';
   import {
-    cart, 
+    cart,
     removeItem,
     countItems,
     getPrice
@@ -52,7 +52,7 @@
           </div>
         </li>
       {:else}
-        <li style="color: var(--text-muted); padding: 0.75em;">
+        <li style="color: var(--info); padding: 0.75em;">
           Your cart is empty.
         </li>
       {/each}
@@ -69,12 +69,12 @@
       {itemCount}
     </p>
     <p>Subtotal: ${total.toFixed(2)}</p>
-    <a href="{resolve("/checkout")}">
-        <button 
-            class="checkout-button" 
-            type="button"
-            disabled={total===0}
-        >Checkout</button>
+    <a href={resolve('/checkout')}>
+      <button
+        class="checkout-button"
+        type="button"
+        disabled={total === 0}>Checkout</button
+      >
     </a>
   </aside>
 </div>
@@ -82,8 +82,8 @@
 <style>
   h2 {
     color: var(--text);
-  }  
-  
+  }
+
   .page-header {
     color: var(--text);
     text-align: left;
@@ -133,7 +133,9 @@
     border-radius: 1em;
     padding: 4px;
     margin-bottom: 4px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family:
+      'Trebuchet MS', 'Lucida Sans Unicode',
+      'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
 
   .quantity button {
@@ -164,7 +166,9 @@
     border-radius: 1em;
     background-color: var(--accent);
     cursor: pointer;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family:
+      'Trebuchet MS', 'Lucida Sans Unicode',
+      'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
 
   .checkout-button {
@@ -174,7 +178,9 @@
     border-radius: 1em;
     background-color: var(--accent);
     cursor: pointer;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family:
+      'Trebuchet MS', 'Lucida Sans Unicode',
+      'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
 
   .checkout-button:disabled {
