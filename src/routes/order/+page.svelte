@@ -1,8 +1,8 @@
 <script lang="ts">
   import Bagel from '../../lib/components/Bagel.svelte';
-  let name = 'Svelte!!!';
-  let bagel =
-    'src/lib/assets/bagels/Cinnamon-Raisin-Bagel.webp';
+  // let name = 'Svelte!!!';
+  // let bagel =
+  //   'src/lib/assets/bagels/Cinnamon-Raisin-Bagel.webp';
 </script>
 
 <h1 class="center">Buy a bagel!</h1>
@@ -38,8 +38,16 @@
     name="Honey Wholewheat"
     price={9.5}
   />
-  <Bagel img="Onion-Bagel.webp" name="Onion" price={9.5} />
-  <Bagel img="Plain-Bagel.webp" name="Plain" price={9.5} />
+  <Bagel 
+    img="Onion-Bagel.webp" 
+    name="Onion" 
+    price={9.5} 
+  />
+  <Bagel 
+    img="Plain-Bagel.webp" 
+    name="Plain" 
+    price={9.5} 
+  />
   <Bagel
     img="Poppyseed-Bagel.webp"
     name="Poppyseed"

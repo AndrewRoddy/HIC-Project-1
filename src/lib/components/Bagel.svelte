@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { cost } from '../state/cost.svelte.js';
   // Passed in properties for the bagel
   let {
     img = 'Cinnamon-Raisin-Bagel.webp',
@@ -10,25 +9,21 @@
   // Builds the bagel path
   let bagel_path = '/bagels/';
   let full_bagel_path = bagel_path + img;
-
-  function buyBagel() {
-    cost.total += price;
-  }
 </script>
 
 <a
   href="./bagel?path={full_bagel_path}&name={name}&price={price}"
 >
-  <button class="container" onclick={buyBagel}>
+  <button class="container">
     <img src={full_bagel_path} class="bagel-image" />
     <div class="text-area">
       <h1>{name}</h1>
       <div>
         <h1>Bagel</h1>
-        <h2>${price}</h2>
+        <h2>${price.toFixed(2)}</h2>
       </div>
-    </div>
-  </button>
+    </div></button
+  >
 </a>
 
 <style>

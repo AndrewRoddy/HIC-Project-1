@@ -1,65 +1,59 @@
 <script lang="ts">
   import '../../app.css';
   import { page } from '$app/state';
-  const path = $derived(page.url.searchParams.get('path'));
-  const name = $derived(page.url.searchParams.get('name'));
-  const price = $derived(
-    page.url.searchParams.get('price')
+  import Bagel from '$lib/components/Bagel.svelte';
+  import { cost } from '$lib/state/cost.svelte.js';
+
+  const path = $derived(
+    page.url.searchParams.get('path')?.split('/').pop() ||
+      'Cinnamon-Raisin-Bagel.webp'
   );
+  const name = $derived(
+    page.url.searchParams.get('name') ?? 'Regular Bagel'
+  );
+  const price = $derived(
+    Number(page.url.searchParams.get('price') ?? 99.99)
+  );
+
+  function buyBagel() {
+    cost.total += price;
+  }
 </script>
 
-<p>BAGELPAGE</p>
-<button class="container" onclick={buyBagel}>
-  <img src={path} class="bagel-image" alt=""/>
-  <div class="text-area">
-    <h1>{name}</h1>
-    <h1>Bagel</h1>
-    <h3>${price}</h3>
-  </div>
-</button>
+<h1 class="page-header">Bagel Info</h1>
+
+<div class="bagel-section">
+  <Bagel img={path} {name} {price} />
+
+  <button
+    class="add-to-cart-button"
+    type="button"
+    onclick={buyBagel}>Add to Cart</button
+  >
+</div>
 
 <style>
-  .container {
-    /* Spae in bewteen the squares */
-    margin: 0.3em;
+  .page-header {
+    text-align: left;
+    padding-left: 0.75em;
+    color: var(--text);
+  }
 
-    /* Centers bagel */
-    text-align: center;
-
-    /* Removes the button border */
-    border: 0;
-
-    /* Makes the div resize to the size of the text/bagel */
-    display: inline-block;
-
-    background-color: var(--accent);
-
+  .bagel-section {
     padding: 1em;
+    list-style: none;
+    margin: 0;
+    display: flex;
+    align-items: top;
+    gap: 40px;
+  }
+
+  .add-to-cart-button {
+    width: 100px;
+    height: 50px;
+    border: none;
     border-radius: 1em;
-  }
-
-  .container:hover {
-    background-color: var(--accent-hover);
-    .bagel-image {
-      transform: scale(1.05);
-    }
-  }
-
-  .bagel-image {
-    width: 15em;
-    height: 15em;
-    transition: all 0.1s ease;
-  }
-
-  .text-area {
-    color: white;
-    gap: 1em;
-    text-align: center;
-
-    h1,
-    h3 {
-      margin: 0;
-      padding: 0;
-    }
+    background-color: var(--accent);
+    cursor: pointer;
   }
 </style>
