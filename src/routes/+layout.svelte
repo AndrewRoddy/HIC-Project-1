@@ -2,8 +2,10 @@
   import '../app.css';
   import favicon from '$lib/assets/favicon.svg';
   import Icon from '../lib/components/Icon.svelte';
-  import { cost } from '../lib/state/cost.svelte.js';
+  import { getPrice } from '../lib/state/cart.svelte';
   import { onMount } from 'svelte';
+
+  const total = $derived(getPrice());
 
   let { children } = $props();
 
@@ -28,7 +30,7 @@
         fillColor="var(--accent)"
         hoverColor="var(--accent-hover)"
       />
-      <div class="price">${ready ? cost.total : '...'}</div>
+      <div class="price">${ready ? total.toFixed(2) : '...'}</div>
     </a>
   </navbar>
 

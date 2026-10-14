@@ -1,6 +1,7 @@
 <script lang="ts">
   // Passed in properties for the bagel
   let {
+    id,
     img = 'Cinnamon-Raisin-Bagel.webp',
     name = 'Regular Bagel',
     price = 99.99
@@ -12,7 +13,7 @@
 </script>
 
 <a
-  href="./bagel?path={full_bagel_path}&name={name}&price={price}"
+  href="./bagel?id={id}&path={full_bagel_path}&name={name}&price={price}"
 >
   <button class="container">
     <img src={full_bagel_path} class="bagel-image" />
