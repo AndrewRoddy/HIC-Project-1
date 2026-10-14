@@ -1,18 +1,13 @@
 <script lang="ts">
   import '../app.css';
   import favicon from '$lib/assets/favicon.svg';
-  import Icon from '../lib/components/Icon.svelte';
-  import { getPrice } from '../lib/state/cart.svelte';
-  import { onMount } from 'svelte';
+  import Icon from '$lib/components/Icon.svelte';
+  import Navbar from '$lib/components/Navbar.svelte';
+  import { getPrice } from '$lib/state/cart.svelte';
 
   const total = $derived(getPrice());
 
   let { children } = $props();
-
-  // Loads in the cost variable
-  // True if page loaded cost
-  let ready = $state(false);
-  onMount(() => (ready = true));
 </script>
 
 <svelte:head>
@@ -20,19 +15,7 @@
 </svelte:head>
 
 <page>
-  <navbar>
-    <a href="./">bagl</a>
-    <a href="./order">order</a>
-    <a href="./rewards">rewards</a>
-    <a href="./cart" class="price-container">
-      <Icon
-        name={'cart'}
-        fillColor="var(--accent)"
-        hoverColor="var(--accent-hover)"
-      />
-      <div class="price">${ready ? total.toFixed(2) : '...'}</div>
-    </a>
-  </navbar>
+  <Navbar {total} />
 
   <content>
     {@render children()}
@@ -53,41 +36,6 @@
     display: flex;
     flex-direction: column;
     background-color: var(--bg);
-  }
-
-  navbar {
-    margin: 0em;
-    padding: 0.5em;
-    justify-content: center;
-    display: flex;
-    gap: 2em;
-    text-align: center;
-    align-content: center;
-
-    /* Navbar colors */
-    background-color: var(--bg-deep);
-    border-bottom: 0.5px solid var(--border);
-    color: var(--accent);
-
-    a {
-      color: var(--accent);
-      font-size: 3em;
-      text-decoration: none;
-      display: flex;
-    }
-    a:hover {
-      color: var(--accent-hover);
-    }
-  }
-
-  .price {
-    font-size: 0.5em;
-  }
-  .price-container {
-    display: flex;
-    vertical-align: middle;
-    align-items: center;
-    gap: 0.1em;
   }
 
   footer {

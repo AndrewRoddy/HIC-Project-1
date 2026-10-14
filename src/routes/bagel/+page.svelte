@@ -23,24 +23,20 @@
 <h1 class="page-header">Bagel Info</h1>
 
 <div class="bagel-section">
-  <Bagel
-   id={id}
-   img={path} 
-   {name} 
-   {price} 
-  />
+  <Bagel {id} img={path} {name} {price} />
 
   <button
     class="add-to-cart-button"
     type="button"
     disabled={!page.url.searchParams.get('id')}
-    onclick={() => buyBagel({
-      id,
-      name,
-      img: path,
-      price
-    })}
-  > 
+    onclick={() =>
+      buyBagel({
+        id,
+        name,
+        img: path,
+        price
+      })}
+  >
     Add to Cart
   </button>
 </div>
