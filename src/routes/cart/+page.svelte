@@ -251,7 +251,7 @@
     height: 38px;
     border: none;
     border-radius: 1em;
-    background-color: var(--text);
+    background-color: var(--accent);
     cursor: pointer;
   }
 </style>
