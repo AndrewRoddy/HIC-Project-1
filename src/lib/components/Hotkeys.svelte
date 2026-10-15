@@ -20,8 +20,6 @@
       case 'c':
         document.getElementById('cartID').click();
         break;
-      case 'Alt':
-        break;
     }
   }
 
@@ -45,8 +43,11 @@
         e.preventDefault();
         break;
       case 'Alt':
-        is_alt_down = true;
-        console.log(`Alt Keydown (${is_alt_down})`);
+        if (is_alt_down) {
+          is_alt_down = false;
+        } else {
+          is_alt_down = true;
+        }
         e.preventDefault();
         break;
     }
@@ -61,24 +62,9 @@
       key_action_runner(e);
     }
   }
-
-  function on_key_up(e) {
-    if (e.repeat) return;
-
-    switch (e.key) {
-      case 'Alt':
-        is_alt_down = false;
-        console.log(`Alt Keyup (${is_alt_down})`);
-        e.preventDefault();
-        break;
-    }
-  }
 </script>
 
-<svelte:window
-  on:keydown={on_key_down}
-  on:keyup={on_key_up}
-/>
+<svelte:window on:keydown={on_key_down} />
 
 {#if is_alt_down}
   <div class="hotkey-container">
