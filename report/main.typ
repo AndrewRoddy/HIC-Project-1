@@ -33,10 +33,10 @@ When the user first opens the application they are taken to the home page
 )
 ...
 
-= Rewards Page
+= Bagel Info Page
 #figure(
-  image("img/rewards.png"),
-  caption: "The rewards page."
+  image("img/bagel-info.png"),
+  caption: "The bagel info page."
 )
 ...
 
@@ -46,6 +46,7 @@ When the user first opens the application they are taken to the home page
   caption: "The cart page."
 )
 ...
+
 
 = Checkout Page
 #figure(
@@ -58,6 +59,13 @@ When the user first opens the application they are taken to the home page
 #figure(
   image("img/history.png"),
   caption: "The history page."
+)
+...
+
+= Rewards Page
+#figure(
+  image("img/rewards.png"),
+  caption: "The rewards page."
 )
 ...
 
