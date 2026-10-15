@@ -3,9 +3,7 @@
         cart, 
         countItems,
         clearCart,
-
-		loadCart
-
+		    loadCart
     } from '$lib/state/cart.svelte';
     import { onMount } from 'svelte';
     import { goto } from '$app/navigation';
