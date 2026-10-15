@@ -14,9 +14,9 @@
 </script>
 
 <div class="navbar">
-  <a href="./">bagl</a>
-  <a href="./order">order</a>
-  <a href="./rewards">rewards</a>
+  <a href="./">Bagl</a>
+  <a href="./order">Order</a>
+  <a href="./rewards">Rewards</a>
   <a href="./cart" class="price-container">
     <Icon
       name={'cart'}
