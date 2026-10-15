@@ -1,118 +1,156 @@
 <script lang="ts">
-  
+  import { resolve } from "$app/paths";
 </script>
 
-<div class="content">
-  <h1 class="motto">Welcome to Bagl!</h1>
+<h1 class="page-header">Welcome to Bagl!</h1>
 
-  <div class="mission">
-    <p class="mission-text">Here at Bagl we understand how important a good bagel is.
-    We started Bagl so that bagel lovers could have an easy and simple
-    way to get bagels of all types delivered to them quickly. Nothing is more important than a good bagel, and here at Bagl
-    we offer nothing but the absolute finest bagels around. All which
-    can be delivered straight to your house. I mean come on, it doesn't
-    get much better than that.</p>
-  </div>
+<div class="home">
+  <section class="mission" aria-labelledby="mission-title">
+    <h2 id="mission-title">A good bagel makes all the difference.</h2>
 
-  <div class="button-outer">
-    <a href="/order" class="button">Order Now</a>
-  </div>
+    <p>
+      Here at Bagl we understand how important a good bagel is.
+      We started Bagl so that bagel lovers could have an easy and simple
+      way to get bagels of all types delivered to them quickly. Nothing is more important than a good bagel, and here at Bagl
+      we offer nothing but the absolute finest bagels around. All which
+      can be delivered straight to your house. I mean come on, it doesn't
+      get much better than that.
+    </p>
 
-  <div class="perks-list">
-    <h3 class="perk-desc">Become a member today and enjoy our wonderful perks</h3>
+    <p>
+      Explore our selection, find your next favorite, 
+      and enjoy the perks of being a Bagl member!
+    </p>
+    <div class="actions">
+      <a class="action-button" href={resolve('/order')}>
+        Order Now
+      </a>
 
+      <a class="action-button" href={resolve('/rewards')}>
+        Become a Member
+      </a>
+    </div>
+  </section>
+
+  <aside class="membership" aria-labelledby="perks-title">
     <ul class="perks">
       <li class="perk">
-        <p>Buy your first bagel and get your second free!</p>
+        <h3>Your second bagel is on us</h3>
+        <p>Buy your first bagel and get your second for free!</p>
       </li>
+
       <li class="perk">
-        <p>Once a member, every 4 bagels you buy you get 1 free!</p>
+        <h3>Every fifth bagel is free</h3>
+        <p>Buy four bagels and enjoy the next one for free!</p>
       </li>
     </ul>
-
-    <div class="member-button-outer">
-      <a href="/rewards" class="button">Become a Member</a>
-    </div>
-  </div>
+  </aside>
 </div>
 
-
-<style>
-  .content {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 1rem;
+<style>  
+  .page-header {
+    color: var(--text);
     text-align: left;
+    padding-left: 0.75em;
   }
-  
-  .motto {
-    font-family: 'Times New Roman';
-    font-size: 3em;
+
+  .home {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 32px 40px;
+    align-items: start;
+    padding: 1em;
+    padding-left: 1.5em;
+  }
+
+  .mission {
+    min-width: 0;
     color: var(--text);
-    text-align: center;
   }
 
-  .mission-text {
-    font-family: 'Times New Roman';
-    font-size: 2em;
+  .membership {
+    width: 100%;
+    max-width: 800px;
+    justify-self: center;
+    align-self: center;
+  }
+
+  h2 {
+    margin-top: 0;
     color: var(--text);
   }
 
-  .button-outer {
-    text-align: center;
-  }
-
-  .button {
-    display: inline-block;
-    background-color: var(--accent);
-    color: black;
-    text-decoration: none;
-    font-family: 'Times New Roman';
-    font-size: 3em;
-    padding: 0.1em 0.4em;
-    border-radius: 0.5em;
-    border: 0;
-  }
-
-  .button:hover {
-    transform: scale(1.05);
-  }
-
-  .perks-list {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-
-  .perk-desc {
-    font-family: 'Times New Roman';
-    font-size: 2em;
-    text-align: center;
-    color: var(--text);
-    padding-top: 100px;
-    padding-bottom: 25px;
+  .mission p {
+    margin: 0 0 1em;
+    line-height: 1.7;
+    color: var(--text-muted);
   }
 
   .perks {
-    font-family: 'Times New Roman';
-    color: var(--text);
-    list-style: none;
-    padding: 0;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 16px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
   .perk {
-    border: 2px solid var(--accent);
-    border-radius: 10px;
-    padding: 1rem;
-    text-align: left;
-    font-size: 1.3em;
+    box-sizing: border-box;
+    max-width: 500px;
+    padding: 24px;
+    background-color: var(--surface);
+    border: 1px solid var(--accent);
+    border-radius: 1em;
   }
 
-  .member-button-outer {
-    padding-top: 50px;
+  .perk h3 {
+    color: var(--text);
+  }
+
+  .perk p{
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .actions {
+    grid-column: 1 / -1;
+    display: flex;
+    padding-top: 1em;
+    justify-content: left;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .action-button {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+    min-height: 38px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 1em;
+    background-color: var(--accent);
+    color: var(--bg-deep);
     text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-family:
+      'Trebuchet MS', 'Lucida Sans Unicode',
+      'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 0.875rem;
+  }
+
+  .action-button:hover{
+    background-color: var(--accent-hover);
+  }
+
+  .action-button:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 3px;
   }
 </style>

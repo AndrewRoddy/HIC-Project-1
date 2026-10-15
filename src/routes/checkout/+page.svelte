@@ -3,7 +3,7 @@
         cart, 
         countItems,
         clearCart,
-		    loadCart
+		loadCart
     } from '$lib/state/cart.svelte';
     import { onMount } from 'svelte';
     import { goto } from '$app/navigation';
@@ -46,7 +46,7 @@
 
 {#if checkoutError}
     <p role="alert">{checkoutError}</p>
-    <a href="{resolve('/cart')}">Return to Cart</a>
+    <a href={resolve('/cart')}>Return to Cart</a>
 {:else if ready}
     <h1 class="page-header">Order Summary</h1>
     <h3>Thank you for placing an order!</h3>
@@ -72,7 +72,7 @@
             {/if}
         </p>
     </div>
-    <a class="history-link" href="{resolve('/orders')}">View order history</a>
+    <a class="history-link" href={resolve('/orders')}>View order history</a>
 {:else}
     <p style="color: var(--text);">Checking your cart...</p>
 {/if}

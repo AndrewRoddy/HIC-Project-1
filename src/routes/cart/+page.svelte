@@ -19,7 +19,7 @@
   <p class="cart-notice" role="status">
     Checkout is not available because your cart is empty. 
     Add some 
-      <a href="{resolve('/order')}">bagels</a> 
+      <a href={resolve('/order')}>bagels</a> 
     before placing an order!
   </p>  
 {/if}

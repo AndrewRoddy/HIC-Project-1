@@ -30,7 +30,7 @@
     <p role="alert">{errorMessage}</p>
 {:else if orders.items.length === 0}
     <p>You don't have any orders yet.</p>
-    <a href="{resolve('/order')}">Order some bagels!</a>
+    <a href={resolve('/order')}>Order some bagels!</a>
 {:else}
     <div class="orders">
         {#each orders.items as order (order.id)}
