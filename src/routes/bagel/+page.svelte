@@ -2,10 +2,11 @@
   import '../../app.css';
   import { page } from '$app/state';
   import Bagel from '$lib/components/Bagel.svelte';
-  import { 
+  import {
     buyBagel,
     cart,
-    removeItem
+    removeItem,
+    modifyQuantity
   } from '$lib/state/cart.svelte';
 
   const path = $derived(
@@ -25,7 +26,7 @@
     Number(page.url.searchParams.get('cal') ?? 280)
   );
   const cartItem = $derived(
-    cart.items.find(item => item.id === id)
+    cart.items.find((item) => item.id === id)
   );
 </script>
 
@@ -37,20 +38,22 @@
     <h3 class="page-text">{cal} cal</h3>
 
     {#if cartItem}
-      <p style="color: var(--text);">In your cart: </p>
+      <p style="color: var(--text);">In your cart:</p>
       <div class="controls">
         <div class="quantity">
           <button
             type="button"
             disabled={cartItem.quantity <= 1}
-            onclick={() => cartItem.quantity--}>-</button
+            onclick={() => modifyQuantity(cartItem.id, -1)}
+            >-</button
           >
 
           <span>{cartItem.quantity}</span>
 
           <button
             type="button"
-            onclick={() => cartItem.quantity++}>+</button
+            onclick={() => modifyQuantity(cartItem.id, 1)}
+            >+</button
           >
         </div>
 
@@ -165,6 +168,8 @@
     border-radius: 1em;
     background-color: var(--accent);
     cursor: pointer;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family:
+      'Trebuchet MS', 'Lucida Sans Unicode',
+      'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
 </style>
