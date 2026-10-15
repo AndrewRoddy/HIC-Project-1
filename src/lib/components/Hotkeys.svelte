@@ -68,19 +68,26 @@
 
 {#if is_alt_down}
   <div class="hotkey-container">
-    <div>[b]</div>
-    <div>[o]</div>
-    <div>[r]</div>
-    <div>[c]</div>
+    <div class="text">Keyboard Shortcuts</div>
+    <div class="keys">
+      <div>[b] (home)</div>
+      <div>[o] (order)</div>
+      <div>[r] (rewards)</div>
+      <div>[c] (cart)</div>
+    </div>
   </div>
 {/if}
 
 <style>
+  .text {
+    font-size: 1.5em;
+    margin: 0.4em;
+  }
+
   .hotkey-container {
     padding: 0.5em;
     justify-content: center;
-    display: flex;
-    gap: 6.4em;
+    text-align: center;
 
     /* Navbar colors */
     background-color: var(--bg-deep);
@@ -88,7 +95,17 @@
     color: var(--accent);
   }
 
-  .hotkey-container div {
+  .keys {
+    justify-content: center;
+    display: flex;
+    gap: 1.4em;
+
+    /* Navbar colors */
+    background-color: var(--bg-deep);
+    color: var(--accent);
+  }
+
+  .keys div {
     color: var(--bg-deep);
     background-color: var(--text);
     border: 0.01em solid var(--border);
