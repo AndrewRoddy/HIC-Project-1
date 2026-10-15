@@ -28,7 +28,20 @@
   }
 
   function on_key_down(e: KeyboardEvent) {
+    // Doesn't set it again if its the same key pressed
     if (e.repeat) return;
+
+    // Doesn't count input field keys
+    if (e.target instanceof HTMLElement) {
+      if (
+        e.target.isContentEditable ||
+        e.target.tagName === 'INPUT' ||
+        e.target.tagName === 'TEXTAREA' ||
+        e.target.tagName === 'SELECT'
+      ) {
+        return;
+      }
+    }
 
     switch (e.key) {
       case 'b':
