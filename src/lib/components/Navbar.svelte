@@ -6,7 +6,7 @@
   import { onMount } from 'svelte';
   import { resolve } from '$app/paths';
 
-  let { total = 0, show_hotkeys = false } = $props<{
+  let { total = 0 } = $props<{
     total?: number;
   }>();
 
