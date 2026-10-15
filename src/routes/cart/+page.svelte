@@ -7,12 +7,22 @@
     getPrice
   } from '$lib/state/cart.svelte';
   import { resolve } from '$app/paths';
+  import { page } from '$app/state';
 
   const itemCount = $derived(countItems());
   const total = $derived(getPrice());
 </script>
 
 <h1 class="page-header">My Cart</h1>
+
+{#if page.url.searchParams.get('reason') === 'empty-cart'}
+  <p class="cart-notice" role="status">
+    Checkout is not available because your cart is empty. 
+    Add some 
+      <a href="{resolve('/order')}">bagels</a> 
+    before placing an order!
+  </p>  
+{/if}
 
 <div class="cart">
   <section class="cart-items" aria-labelledby="cart-title">
@@ -80,6 +90,26 @@
 </div>
 
 <style>
+  .cart-notice {
+    padding: 1em;
+    margin-left: 1.25em;
+    width: 620px;
+    color: var(--text);
+    background-color: var(--surface);
+    border: 1px solid var(--accent);
+    border-radius: 0.5em;
+  }
+
+  .cart-notice a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-style: 0.15em;
+  }
+
+  .cart-notice a:hover {
+    color: var(--accent-hover);
+  }
+  
   h2 {
     color: var(--text);
   }
