@@ -4,6 +4,7 @@
 
   import { getPrice } from '$lib/state/cart.svelte';
   import { onMount } from 'svelte';
+  import { resolve } from '$app/paths';
 
   let { total = 0.0 } = $props();
 
@@ -14,12 +15,12 @@
 </script>
 
 <div class="navbar">
-  <a href="./">Bagl</a>
-  <a href="./order">Order</a>
-  <a href="./rewards">Rewards</a>
-  <a href="./cart" class="price-container">
+  <a href="{resolve("/")}">Bagl</a>
+  <a href="{resolve("/order")}">Order</a>
+  <a href="{resolve("/rewards")}">Rewards</a>
+  <a href="{resolve("/cart")}" class="price-container">
     <Icon
-      name={'cart'}
+      name= 'cart'
       fillColor="var(--accent)"
       hoverColor="var(--accent-hover)"
     />
