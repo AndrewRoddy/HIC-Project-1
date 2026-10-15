@@ -2,42 +2,52 @@
     import {
         cart, 
         countItems,
-        getPrice,
         clearCart,
-
-		loadCart
-
+		    loadCart
     } from '$lib/state/cart.svelte';
     import { onMount } from 'svelte';
     import { goto } from '$app/navigation';
     import { resolve } from '$app/paths';
+    import { saveOrder } from '$lib/state/orders.svelte';
 
     let purchasedItems = $state<typeof cart.items>([]);
     let itemCount = $state(0);
     let total = $state(0);
     let ready = $state(false);
+    let checkoutError = $state('');
 
     onMount(() => {
-        loadCart();
+        try {
+            loadCart();
 
-        if (countItems() === 0) {
-            // eslint-disable-next-line svelte/no-navigation-without-resolve
-            void goto(`${resolve('/cart')}?reason=empty-cart`, {
-                replaceState: true
-            });
-            return;
+            if (countItems() === 0) {
+                // eslint-disable-next-line svelte/no-navigation-without-resolve
+                void goto(`${resolve('/cart')}?reason=empty-cart`, {
+                    replaceState: true
+                });
+                return;
+            }
+
+            const order = saveOrder(cart.items);
+
+            purchasedItems = order.items;
+            itemCount = order.itemCount;
+            total = order.total;
+
+            clearCart();
+            ready = true;
+        } catch (error) {
+            console.error('Checkout failed: ', error);
+            checkoutError = "We coudn't finish saving your order. \
+            Please go back to your cart and try again.";
         }
-
-        purchasedItems = cart.items.map((item) => ({...item}));
-        itemCount = countItems();
-        total = getPrice();
-
-        clearCart();
-        ready = true;
     });
 </script>
 
-{#if ready}
+{#if checkoutError}
+    <p role="alert">{checkoutError}</p>
+    <a href="{resolve('/cart')}">Return to Cart</a>
+{:else if ready}
     <h1 class="page-header">Order Summary</h1>
     <h3>Thank you for placing an order!</h3>
 
@@ -62,6 +72,7 @@
             {/if}
         </p>
     </div>
+    <a class="history-link" href="{resolve('/orders')}">View order history</a>
 {:else}
     <p style="color: var(--text);">Checking your cart...</p>
 {/if}
@@ -93,5 +104,16 @@
         padding: 0;
         align-items: center;
         gap: 40px
+    }
+
+    .history-link {
+        color: var(--accent);
+        text-decoration: underline;
+        text-decoration-style: 0.15em;
+        padding-left: 1.5em;
+    }
+
+    .history-link:hover {
+        color: var(--accent-hover);
     }
 </style>

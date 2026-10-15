@@ -1,29 +1,33 @@
 <script lang="ts">
-  let is_b_down,
-    is_o_down,
-    is_r_down,
-    is_c_down = false;
+  let is_b_down: boolean,
+    is_o_down: boolean,
+    is_h_down: boolean,
+    is_r_down: boolean,
+    is_c_down: boolean = false;
 
   let is_alt_down = $state(false);
 
-  function key_action_runner(e) {
+  function key_action_runner(e: KeyboardEvent) {
     switch (e.key) {
       case 'b':
-        document.getElementById('homeID').click();
+        document.getElementById('homeID')?.click();
         break;
       case 'o':
-        document.getElementById('orderID').click();
+        document.getElementById('orderID')?.click();
+        break;
+      case 'h':
+        document.getElementById('historyID')?.click();
         break;
       case 'r':
-        document.getElementById('rewardsID').click();
+        document.getElementById('rewardsID')?.click();
         break;
       case 'c':
-        document.getElementById('cartID').click();
+        document.getElementById('cartID')?.click();
         break;
     }
   }
 
-  function on_key_down(e) {
+  function on_key_down(e: KeyboardEvent) {
     if (e.repeat) return;
 
     switch (e.key) {
@@ -35,8 +39,13 @@
         is_o_down = true;
         e.preventDefault();
         break;
+      case 'h':
+        is_h_down = true;
+        e.preventDefault();
+        break;
       case 'r':
         is_r_down = true;
+        e.preventDefault();
         break;
       case 'c':
         is_c_down = true;
@@ -56,6 +65,7 @@
       is_o_down ||
       is_b_down ||
       is_r_down ||
+      is_h_down ||
       is_c_down ||
       is_alt_down
     ) {
@@ -72,6 +82,7 @@
     <div class="keys">
       <div>[b] (home)</div>
       <div>[o] (order)</div>
+      <div>[h] (history)</div>
       <div>[r] (rewards)</div>
       <div>[c] (cart)</div>
     </div>
@@ -82,6 +93,7 @@
   .text {
     font-size: 1.5em;
     margin: 0.4em;
+    color: var(--text);
   }
 
   .hotkey-container {
