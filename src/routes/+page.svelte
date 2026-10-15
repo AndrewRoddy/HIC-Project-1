@@ -4,7 +4,6 @@
 
 <div class="content">
   <h1 class="motto">Welcome to Bagl!</h1>
-  <h2 class="motto">Eat bagels. Earn rewards. Get free dough.</h2>
 
   <div class="mission">
     <p class="mission-text">Here at Bagl we understand how important a good bagel is.
@@ -43,19 +42,19 @@
     max-width: 1000px;
     margin: 0 auto;
     padding: 0 1rem;
+    text-align: left;
   }
-
+  
   .motto {
     font-family: 'Times New Roman';
     font-size: 3em;
-    text-align: center;
     color: var(--text);
+    text-align: center;
   }
 
   .mission-text {
     font-family: 'Times New Roman';
     font-size: 2em;
-    text-align: center;
     color: var(--text);
   }
 
@@ -108,7 +107,7 @@
     border: 2px solid var(--accent);
     border-radius: 10px;
     padding: 1rem;
-    text-align: center;
+    text-align: left;
     font-size: 1.3em;
   }
 
