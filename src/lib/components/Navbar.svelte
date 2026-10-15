@@ -14,12 +14,16 @@
 </script>
 
 <div class="navbar">
-  <a href="{resolve("/")}">Bagl</a>
-  <a href="{resolve("/order")}">Order</a>
-  <a href="{resolve("/rewards")}">Rewards</a>
-  <a href="{resolve("/cart")}" class="price-container">
+  <a id="homeID" href={resolve('/')}>Bagl</a>
+  <a id="orderID" href={resolve('/order')}>Order</a>
+  <a id="rewardsID" href={resolve('/rewards')}>Rewards</a>
+  <a
+    id="cartID"
+    href={resolve('/cart')}
+    class="price-container"
+  >
     <Icon
-      name= 'cart'
+      name="cart"
       fillColor="var(--accent)"
       hoverColor="var(--accent-hover)"
     />
