@@ -1,31 +1,5 @@
 <script lang="ts">
-  let is_b_down: boolean,
-    is_o_down: boolean,
-    is_h_down: boolean,
-    is_r_down: boolean,
-    is_c_down: boolean = false;
-
   let is_alt_down = $state(false);
-
-  function key_action_runner(e: KeyboardEvent) {
-    switch (e.key) {
-      case 'b':
-        document.getElementById('homeID')?.click();
-        break;
-      case 'o':
-        document.getElementById('orderID')?.click();
-        break;
-      case 'h':
-        document.getElementById('historyID')?.click();
-        break;
-      case 'r':
-        document.getElementById('rewardsID')?.click();
-        break;
-      case 'c':
-        document.getElementById('cartID')?.click();
-        break;
-    }
-  }
 
   function on_key_down(e: KeyboardEvent) {
     // Doesn't set it again if its the same key pressed
@@ -49,24 +23,19 @@
     // Sets key presses to true
     switch (e.key) {
       case 'b':
-        is_b_down = true;
-        e.preventDefault();
+        document.getElementById('homeID')?.click();
         break;
       case 'o':
-        is_o_down = true;
-        e.preventDefault();
+        document.getElementById('orderID')?.click();
         break;
       case 'h':
-        is_h_down = true;
-        e.preventDefault();
+        document.getElementById('historyID')?.click();
         break;
       case 'r':
-        is_r_down = true;
-        e.preventDefault();
+        document.getElementById('rewardsID')?.click();
         break;
       case 'c':
-        is_c_down = true;
-        e.preventDefault();
+        document.getElementById('cartID')?.click();
         break;
       case 'Alt':
         if (is_alt_down) {
@@ -74,20 +43,11 @@
         } else {
           is_alt_down = true;
         }
-        e.preventDefault();
         break;
     }
 
-    if (
-      is_o_down ||
-      is_b_down ||
-      is_r_down ||
-      is_h_down ||
-      is_c_down ||
-      is_alt_down
-    ) {
-      key_action_runner(e);
-    }
+    // Stops the keys default actions
+    e.preventDefault();
   }
 </script>
 
