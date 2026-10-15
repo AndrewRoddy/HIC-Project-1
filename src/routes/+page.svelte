@@ -35,13 +35,17 @@
   <aside class="membership" aria-labelledby="perks-title">
     <ul class="perks">
       <li class="perk">
-        <h3>Your second bagel is on us</h3>
-        <p>Buy your first bagel and get your second for free!</p>
+        <p>Buy two bagels and get your third free!</p>
       </li>
 
       <li class="perk">
-        <h3>Every fifth bagel is free</h3>
-        <p>Buy four bagels and enjoy the next one for free!</p>
+        <ul>
+          <li>Buy 2 get 1 free!</li>
+          <li>Buy 4 get 2 free!</li>
+          <li>Buy 8 get 3 free!</li>
+          <li>Buy 16 get 4 free!</li>
+          <li>Buy 32 get 5 free!</li>
+        </ul>
       </li>
     </ul>
   </aside>
