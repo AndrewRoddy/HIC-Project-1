@@ -24,18 +24,23 @@
     switch (e.key) {
       case 'b':
         document.getElementById('homeID')?.click();
+        e.preventDefault();
         break;
       case 'o':
         document.getElementById('orderID')?.click();
+        e.preventDefault();
         break;
       case 'h':
         document.getElementById('historyID')?.click();
+        e.preventDefault();
         break;
       case 'r':
         document.getElementById('rewardsID')?.click();
+        e.preventDefault();
         break;
       case 'c':
         document.getElementById('cartID')?.click();
+        e.preventDefault();
         break;
       case 'Alt':
         if (is_alt_down) {
@@ -43,11 +48,9 @@
         } else {
           is_alt_down = true;
         }
+        e.preventDefault();
         break;
     }
-
-    // Stops the keys default actions
-    e.preventDefault();
   }
 </script>
 
