@@ -19,8 +19,9 @@
   let is_b_down,
     is_o_down,
     is_w_down,
-    is_c_down,
-    is_alt_down = false;
+    is_c_down = false;
+
+  let is_alt_down = $state(false);
 
   function key_action_runner(e) {
     switch (e.key) {
@@ -35,6 +36,8 @@
         break;
       case 'c':
         document.getElementById('cartID').click();
+        break;
+      case 'Alt':
         break;
     }
   }
@@ -61,6 +64,7 @@
         break;
       case 'Alt':
         is_alt_down = true;
+        console.log(`Alt Keydown (${is_alt_down})`);
         e.preventDefault();
         break;
     }
@@ -82,6 +86,7 @@
     switch (e.key) {
       case 'Alt':
         is_alt_down = false;
+        console.log(`Alt Keyup (${is_alt_down})`);
         e.preventDefault();
         break;
     }
@@ -98,7 +103,16 @@
 />
 
 <page>
-  <Navbar {total} {is_alt_down} />
+  <Navbar {total} />
+
+  {#if is_alt_down}
+    <div class="hotkey-container">
+      <div>[b]</div>
+      <div>[o]</div>
+      <div>[w]</div>
+      <div>[c]</div>
+    </div>
+  {/if}
 
   <content>
     {@render children()}
@@ -135,5 +149,27 @@
 
   content {
     margin: 1em;
+  }
+
+  .hotkey-container {
+    padding: 0.5em;
+    justify-content: center;
+    display: flex;
+    gap: 6.4em;
+
+    /* Navbar colors */
+    background-color: var(--bg-deep);
+    border-bottom: 0.5px solid var(--border);
+    color: var(--accent);
+  }
+
+  .hotkey-container div {
+    color: var(--bg-deep);
+    background-color: var(--text);
+    border: 0.01em solid var(--border);
+    padding: 0.2em;
+    border-radius: 0.2em;
+    font-size: 1.5em;
+    font-family: tahoma;
   }
 </style>
