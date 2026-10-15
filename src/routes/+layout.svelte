@@ -18,7 +18,7 @@
 
   let is_b_down,
     is_o_down,
-    is_r_down,
+    is_w_down,
     is_c_down,
     is_alt_down = false;
 
@@ -30,15 +30,12 @@
       case 'o':
         document.getElementById('orderID').click();
         break;
-      case 'r':
+      case 'w':
         document.getElementById('rewardsID').click();
         break;
       case 'c':
         document.getElementById('cartID').click();
         break;
-    }
-    if (is_alt_down) {
-      document.getElementById('cartID').click();
     }
   }
 
@@ -54,8 +51,8 @@
         is_o_down = true;
         e.preventDefault();
         break;
-      case 'r':
-        is_r_down = true;
+      case 'w':
+        is_w_down = true;
         e.preventDefault();
         break;
       case 'c':
@@ -71,7 +68,7 @@
     if (
       is_o_down ||
       is_b_down ||
-      is_r_down ||
+      is_w_down ||
       is_c_down ||
       is_alt_down
     ) {
@@ -101,7 +98,7 @@
 />
 
 <page>
-  <Navbar {total} />
+  <Navbar {total} {is_alt_down} />
 
   <content>
     {@render children()}
