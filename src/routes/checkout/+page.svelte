@@ -22,7 +22,7 @@
     <ul class="order-list">
         {#each purchasedItems as item (item.id) }
             <li class="order-item">
-                <p>${item.quantity * item.price} | {item.name} × {item.quantity}</p>
+                <p>${(item.quantity * item.price).toFixed(2)} | {item.name} × {item.quantity}</p>
             </li>
         {/each}
     </ul>
