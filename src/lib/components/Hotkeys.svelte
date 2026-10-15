@@ -31,6 +31,9 @@
     // Doesn't set it again if its the same key pressed
     if (e.repeat) return;
 
+    // Makes ctrl/meta key bypass my hotkeys
+    if (e.ctrlKey || e.metaKey) return;
+
     // Doesn't count input field keys
     if (e.target instanceof HTMLElement) {
       if (
@@ -43,6 +46,7 @@
       }
     }
 
+    // Sets key presses to true
     switch (e.key) {
       case 'b':
         is_b_down = true;
