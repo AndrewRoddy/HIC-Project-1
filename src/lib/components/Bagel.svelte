@@ -5,7 +5,8 @@
     id,
     img = 'Cinnamon-Raisin-Bagel.webp',
     name = 'Regular Bagel',
-    price = 99.99
+    price = 99.99,
+    cal = 280
   } = $props();
 
   // Builds the bagel path
@@ -13,7 +14,7 @@
 </script>
 
 <a
-  href="{resolve('/bagel')}?id={id}&path={full_bagel_path}&name={name}&price={price}"
+  href="{resolve('/bagel')}?id={id}&path={full_bagel_path}&name={name}&price={price}&cal={cal}"
 >
   <button class="container">
     <img src={full_bagel_path} class="bagel-image" alt="{name}"/>

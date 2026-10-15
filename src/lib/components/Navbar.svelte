@@ -2,29 +2,29 @@
   import '../../app.css';
   import Icon from '$lib/components/Icon.svelte';
 
-  import { getPrice } from '$lib/state/cart.svelte';
+  import { loadCart } from '$lib/state/cart.svelte';
   import { onMount } from 'svelte';
+  import { resolve } from '$app/paths';
 
-  let { total = 0.0 } = $props();
+  let { total = 0 } = $props<{ total?: number }>();
 
-  // Loads in the cost variable
-  // True if page loaded cost
-  let ready = $state(false);
-  onMount(() => (ready = true));
+  onMount(() => {
+    loadCart();
+  });
 </script>
 
 <div class="navbar">
-  <a href="./">Bagl</a>
-  <a href="./order">Order</a>
-  <a href="./rewards">Rewards</a>
-  <a href="./cart" class="price-container">
+  <a href="{resolve("/")}">Bagl</a>
+  <a href="{resolve("/order")}">Order</a>
+  <a href="{resolve("/rewards")}">Rewards</a>
+  <a href="{resolve("/cart")}" class="price-container">
     <Icon
-      name={'cart'}
+      name= 'cart'
       fillColor="var(--accent)"
       hoverColor="var(--accent-hover)"
     />
     <div class="price">
-      ${ready ? total.toFixed(2) : '...'}
+      ${total.toFixed(2)}
     </div>
   </a>
 </div>
