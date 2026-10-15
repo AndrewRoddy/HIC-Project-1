@@ -2,6 +2,7 @@
   import '../app.css';
   import favicon from '$lib/assets/favicon.svg';
   import Navbar from '$lib/components/Navbar.svelte';
+  import Footer from '$lib/components/Footer.svelte';
   import {
     getPrice,
     loadCart
@@ -30,9 +31,7 @@
     {@render children()}
   </content>
 
-  <footer>
-    <h1>BAGL</h1>
-  </footer>
+  <Footer />
 </page>
 
 <style>
@@ -45,18 +44,6 @@
     display: flex;
     flex-direction: column;
     background-color: var(--bg);
-  }
-
-  footer {
-    flex-grow: 1;
-    font-size: 5em;
-    margin: 0em;
-    padding: 0em;
-    text-align: center;
-    background-color: var(--bg-deep);
-    color: var(--text);
-    background-color: var(--bg-deep);
-    border-top: 0.5px solid var(--border);
   }
 
   content {
