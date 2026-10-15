@@ -1,13 +1,17 @@
 <script lang="ts">
   import '../app.css';
   import favicon from '$lib/assets/favicon.svg';
-  import Icon from '$lib/components/Icon.svelte';
   import Navbar from '$lib/components/Navbar.svelte';
-  import { getPrice } from '$lib/state/cart.svelte';
+  import { getPrice, loadCart } from '$lib/state/cart.svelte';
+  import { onMount } from 'svelte';
 
   const total = $derived(getPrice());
 
   let { children } = $props();
+
+  onMount(() => {
+    loadCart();
+  });
 </script>
 
 <svelte:head>

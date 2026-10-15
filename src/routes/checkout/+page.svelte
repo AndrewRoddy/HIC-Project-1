@@ -2,7 +2,8 @@
     import {
         cart, 
         countItems,
-        getPrice
+        getPrice,
+        clearCart
     } from '$lib/state/cart.svelte';
     import { onMount } from 'svelte';
 
@@ -10,7 +11,7 @@
     const total = getPrice();
     const purchasedItems = cart.items.map(item => ({...item}));
     onMount(() => {
-        cart.items = [];
+        clearCart();
     });
 </script>
 
