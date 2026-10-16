@@ -27,6 +27,10 @@
   onMount(loadRewards);
 </script>
 
+<svelte:head>
+  <title>Cart | Bagl</title>
+</svelte:head>
+
 <h1 class="page-header">My Cart</h1>
 
 {#if page.url.searchParams.get('reason') === 'empty-cart'}

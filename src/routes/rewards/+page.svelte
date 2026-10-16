@@ -35,6 +35,10 @@
   let next = $derived(tiers.find((tier) => rewards.points < tier.bagels));
 </script>
 
+<svelte:head>
+  <title>Rewards | Bagl</title>
+</svelte:head>
+
 <div class="motto">
   <h1>Eat bagels. Earn rewards. Get free dough.</h1>
 </div>

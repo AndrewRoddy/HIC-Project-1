@@ -6,6 +6,10 @@
   onMount(loadRewards);
 </script>
 
+<svelte:head>
+  <title>Bagl</title>
+</svelte:head>
+
 <h1 class="page-header">
   {rewards.name ? `Welcome back, ${rewards.name}!` : 'Welcome to Bagl!'}
 </h1>
