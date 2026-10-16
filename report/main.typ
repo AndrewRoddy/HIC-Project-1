@@ -94,16 +94,19 @@ The order summary always shows the item count and the subtotal which reduces the
   caption: "The checkout page."
 )
 ...
+The checkout page shows the order summary after the user places their order. It shows a receipt like structure of the transaction the user just completed. It shows price of each item and the total cost. It also confirms that the user's order went through and links to the order history page at the bottom. if the user's cart is empty it redirects them back to the ordering page to get more bagels.
 
 
-The checkout page has a thank you message and itemized receipt after completing the purchase. This dialogue yields closure to the user that their purchase went through implementing golden rule four. The `Checkout` button is also grayed out in the order summary preventing errors before they happen and implementing golden rule five. 
+The checkout page has a thank you message and itemized receipt after completing the purchase. This dialogue yields closure to the user that their purchase went through implementing golden rule four. There is also a checking out message while it checks out the user. This is informative feedback to the user implementing golden rule three. The page offering a redirect to the order page to users who stumble across the checkout page with an empty cart offers simple error handling, implementing rule five.
 
 = History Page
 #figure(
   image("img/history.png"),
   caption: "The history page."
 )
-...
+The history page allows the user to see their entire history of every bagel they have purchased. It functions like a list of receipts, showing the user the time, date, prices, and total cost of each order.
+
+This page allows the user to not have to remember all of their past purchases implementing rule eight. This not only reduces the user's short term memory load but also the long term memory load! Because completed orders are saved permanently, the user is able to check to confirm at any point that their order went through yielding closure and implementing rule four.  
 
 = Rewards Page
 #figure(
@@ -112,12 +115,28 @@ The checkout page has a thank you message and itemized receipt after completing 
 )
 The rewards page lets customers join the Bagl membership program by entering their preferred name. The input is sanitized and accepts only letters, spaces, hyphens and apostrophes and is saved in the browser’s local storage. This makes it so that the home page can greet returning users by their name. Buying a bagel earns one point which is automatically added during checkout. The highest tier that you have reached determines how many free bagels a customer has earned in total. The page shows the customer’s bagels bought, free bagels available, and how many more purchases unlock the next tier, with unlocked tier cards highlighted. In the cart when you have free bagels available a checkbox appears, which the customer can select to get free bagels depending on their availability. All reward data is in local storage, it is tied to one browser and device.
 
+= About Page
+#figure(
+  image("img/about.png"),
+  caption: "The about page."
+)
+#figure(
+  image("img/about-footer.png"),
+  caption: "The about page button in the footer."
+)
+...
+
 = Hotkeys
 #figure(
   image("img/hotkeys.png"),
-  caption: "The hotkeys dropdown acccessed by pressing Alt/Option."
+  caption: "The hotkeys dropdown acccessed by pressing ? / Alt / Option."
 )
-...
+At the bottom of the page, in the footer, the user is shown that if they press 'Alt', 'Option', or '?' it will display keyboard shortcuts. Users who use the application and explore it often will see this message. Power uses are used to pressing the Alt key in applications like Photoshop, Premiere Pro, or Word to view the list of available hotkeys. This parallel is also made for Mac users who are used to pressing the '?' key on websites. This allows power users to quickly and easily find the hotkeys. These hotkeys act as shortcuts to easily 
+
+This feature allows the use of shortcuts fr expert users implementing rule two.
+Rule 2 Shortcuts for expert users
+Rule 5 Shortcuts ignored while typing or holding Ctrl or Cmd
+Rule 7 User shows and hides the overlay, or can choose to have the overlay always visible
 
 = Group Contributions
 Anddrew Roddy created the repository and initial README. He setup the structure of the SvelteKit project and organized the routes to navigate through the website. Then, he added all 11 of the bagel images that you see in the repository, made and styled the bagel card components in the order page. Continued to improve the CSS for the order page by adding effects to the card. He built the shopping cart application with a working total, and saved the cart to local storage. Created a global color theme to have consistent looking pages. Made shortcuts for the application to make it more accessible to a variety of users. Fixed hotkey bugs like shortcut firing while typing in input field, binding the option key as an alternative to alt for mac users. Wrote the installation instructions and created the report fro submission.
