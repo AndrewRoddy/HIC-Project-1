@@ -19,7 +19,7 @@
 ]
 
 = Introduction
-The app that we created is Bagl. This is an application that lets users purchase bagels and earn rewards! It also features hotkeys and an order history page so user's and view their previous orders.
+The app that we created is Bagl. This is an application that lets users purchase bagels and earn rewards! It also features hotkeys and an order history page so user's and view their previous orders. Our intended users are anybody who is interested in buying a good bagel. 
 
 We created an application with the goal of fully implementing Schneiderman's 8 golden rules.
 
@@ -60,18 +60,18 @@ On this home page, the two buttons at the bottom allow the user to be fully in c
   image("img/order.png"),
   caption: "The order page."
 )
-The order pag shows all of our different bagel options. The user can easily click on any of the bagels to add one of them to their cart. Once they click on one of the bagels, they are taken to the Bagl Info page to increase or decrease their bagel count.
+The order pag shows all of our different bagel options. The user can easily click on any of the bagels to add one of them to their cart. Once they click on one of the bagels, they are taken to the Bagl Info Page to increase or decrease their bagel count.
 
 This page implementes golden rule eight as it has the bagel image, name, and price on every card, reducing the short term memory load needed by the user. It also pops out each bagel, and highlights on hover, as informative feedback for the user implementing golden rule three.
 
 = Bagl Info Page
 #figure(
   image("img/bagel-info.png"),
-  caption: "The bagel info page."
+  caption: "The Bagl info page."
 )
 #figure(
   image("img/bagel-info-more.png"),
-  caption: "The bagel info page after pressing 'Add to Cart'."
+  caption: "The Bagl info page after pressing 'Add to Cart'."
 )
 After clicking on a bagel the user is taken to the Bagl Info Page. This allows the user to see the calorie information relating to each bagel and allows them to confirm that they would like to add the bagel to the cart. Once the bagel is added to the cart the user can then increase or decrease the number of bagels that they would like to purchase. If they decide against purchasing the bagel they can easily press the `Delete` button. The cost in the cart also updates live as the number of bagels in the cart increases and decreases.
 
@@ -134,7 +134,7 @@ The about page which is linked in the footer of the website includes a fun littl
   image("img/hotkeys.png"),
   caption: "The hotkeys dropdown acccessed by pressing ? / Alt / Option."
 )
-At the bottom of the page, in the footer, the user is shown that if they press 'Alt', 'Option', or '?' it will display keyboard shortcuts. Users who use the application and explore it often will see this message. Power uses are used to pressing the Alt key in applications like Photoshop, Premiere Pro, or Word to view the list of available hotkeys. This parallel is also made for Mac users who are used to pressing the '?' key on websites. This allows power users to quickly and easily find the hotkeys. These hotkeys act as shortcuts to easily
+At the bottom of the page, in the footer, the user is shown that if they press 'Alt', 'Option', or '?' it will display keyboard shortcuts. Users who use the application and explore it often will see this message. Power uses are used to pressing the Alt key in applications like Photoshop, Premiere Pro, or Word to view the list of available hotkeys. This parallel is also made for Mac users who are used to pressing the '?' key on websites. This allows power users to quickly and easily find the hotkeys. These hotkeys act as shortcuts to easily navigate the different pages of the website.
 
 The hotkeys feature allows the use of shortcuts for expert users, allowing them to faster navigate through the website, implementing rule two. The shortcuts are also ignored when users are holding control and command allowing them to still use the regular browser hotkeys. The user is also able to use the '?', 'Alt', and 'Option' keys to show or hide the overlay. If the user chooses to keep the overlay, it will stay on their screen for as long as they want. This supports the user's internal locaus of control and implements rule seven.
 
