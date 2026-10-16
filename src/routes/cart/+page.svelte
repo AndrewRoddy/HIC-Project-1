@@ -5,9 +5,13 @@
     removeItem,
     countItems,
     getPrice,
-    modifyQuantity
+    modifyQuantity,
+    loadCart,
+    undoCartChange,
+    confirmCheckout
   } from '$lib/state/cart.svelte';
   import { resolve } from '$app/paths';
+  import { goto } from '$app/navigation';
   import { page } from '$app/state';
   import { onMount } from 'svelte';
   import {
@@ -22,9 +26,82 @@
   // free bagels: use as many as are available, up to the bagels in the cart
   let useFree = $state(false);
   const freeCount = $derived(Math.min(freeAvailable(), itemCount));
-  const discount = $derived(useFree ? discountFor(cart.items, freeCount) : 0);
+  const discount = $derived(
+    useFree ? discountFor(cart.items, freeCount) : 0
+  );
 
-  onMount(loadRewards);
+  let feedback = $state('');
+  let canUndo = $state(false);
+  let navigating = $state(false);
+  let loaded = $state(false);
+
+  onMount(() => {
+    loadRewards();
+    loadCart();
+    loaded = true;
+  });
+
+  function deleteItem(id: number) {
+    const item = cart.items.find((item) => item.id === id);
+    if (!item) return;
+
+    const name = item.name;
+    removeItem(id);
+
+    feedback = `Removed ${name} from yor cart.`;
+    canUndo = true;
+  }
+
+  function changeQuantity(id: number, change: number) {
+    const item = cart.items.find((item) => item.id === id);
+    if (!item || item.quantity + change < 1) return;
+
+    modifyQuantity(id, change);
+
+    feedback = '';
+    canUndo = true;
+  }
+
+  function undoChange() {
+    if (undoCartChange()) {
+      feedback = 'Your last cart change was undone.';
+    }
+    canUndo = false;
+  }
+
+  async function checkout() {
+    if (!loaded || navigating) return;
+
+    if (itemCount === 0) {
+      feedback = 'Your cart is empty. Add some bagels before checking out!';
+      return;
+    }
+
+    const finalTotal = total - discount;
+
+    const confirmed = window.confirm(
+      `Place your order for ${itemCount} ${itemCount === 1 ? 'bagel' : 'bagels'
+
+      }?\n\nTotal: $${finalTotal.toFixed(2)}`
+    );
+
+    if (!confirmed) {
+      feedback = 'Order not placed. You can keep editig your cart.';
+      return;
+    }
+
+    confirmCheckout(useFree ? freeCount : 0);
+    navigating = true;
+
+    try {
+      await goto(resolve('/checkout'));
+    } catch (error) {
+      console.error('Could not open checkout: ', error);
+      feedback = 'Could not open checkout. Please try again.';
+    } finally {
+      navigating = false;
+    }
+  }
 </script>
 
 <h1 class="page-header">My Cart</h1>
@@ -37,6 +114,23 @@
     before placing an order!
   </p>
 {/if}
+
+{#if page.url.searchParams.get('reason') === 'not-confirmed'}
+  <p class="cart-notice" role="status">
+    Your order has not been placed! Review your cart and select 
+    Checkout to confirm it.
+  </p>
+{/if}
+
+<div class="cart-feedback">
+  <p role="status">{feedback}</p>
+
+  {#if canUndo}
+    <button type="button" onclick={undoChange}>
+      Undo last change
+    </button>
+  {/if}
+</div>
 
 <div class="cart">
   <section class="cart-items" aria-labelledby="cart-title">
@@ -55,7 +149,7 @@
               <button
                 type="button"
                 disabled={item.quantity <= 1}
-                onclick={() => modifyQuantity(item.id, -1)}
+                onclick={() => changeQuantity(item.id, -1)}
                 >-</button
               >
 
@@ -63,7 +157,7 @@
 
               <button
                 type="button"
-                onclick={() => modifyQuantity(item.id, 1)}
+                onclick={() => changeQuantity(item.id, 1)}
                 >+</button
               >
             </div>
@@ -71,7 +165,7 @@
             <button
               class="delete-button"
               type="button"
-              onclick={() => removeItem(item.id)}
+              onclick={() => deleteItem(item.id)}
             >
               Delete
             </button>
@@ -110,13 +204,14 @@
       <p>Total: ${(total - discount).toFixed(2)}</p>
     {/if}
 
-    <a href="{resolve('/checkout')}?free={useFree ? freeCount : 0}">
-      <button
-        class="checkout-button"
-        type="button"
-        disabled={total === 0}>Checkout</button
-      >
-    </a>
+    <button 
+      class="checkout-button"
+      type="button"
+      disabled={!loaded || itemCount === 0 || navigating}
+      onclick={checkout}  
+    >
+      {navigating ? 'Opening...' : 'Checkout'}
+    </button>
   </aside>
 </div>
 
@@ -223,7 +318,7 @@
   }
 
   .quantity span {
-    min-width: 20 px;
+    min-width: 20px;
     text-align: center;
     color: var(--text);
   }
@@ -255,5 +350,28 @@
   .checkout-button:disabled {
     opacity: 0.35;
     cursor: not-allowed;
+  }
+
+  .cart-feedback {
+    margin: 0 1.25em 1em;
+    color: var(--text);
+  }
+
+  .cart-feedback p:empty {
+    margin: 0;
+  }
+
+  .cart-feedback button {
+    min-width: 80px;
+    min-height: 38px;
+    padding: 0.5em 1em;
+    border: 1px solid var(--accent);
+    border-radius: 1em;
+    background-color: var(--surface);
+    cursor: pointer;
+    font-family:
+      'Trebuchet MS', 'Lucida Sans Unicode',
+      'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: var(--text);
   }
 </style>

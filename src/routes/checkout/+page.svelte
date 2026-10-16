@@ -3,13 +3,13 @@
         cart, 
         countItems,
         clearCart,
-		loadCart
+		loadCart,
+        consumeConfirmation
     } from '$lib/state/cart.svelte';
     import { onMount } from 'svelte';
     import { goto } from '$app/navigation';
     import { resolve } from '$app/paths';
     import { saveOrder } from '$lib/state/orders.svelte';
-    import { page } from '$app/state';
     import {
         addPoints,
         freeAvailable,
@@ -25,30 +25,52 @@
     let ready = $state(false);
     let checkoutError = $state('');
 
+    async function returnToCart(
+        reason: 'empty-cart' | 'not-confirmed'
+    ) {
+        try {
+            // eslint-disable-next-line svelte/no-navigation-without-resolve
+            await goto(`${resolve('/cart')}?reason=${reason}`, {
+                replaceState: true
+            });
+        } catch (error) {
+            console.error('Could not return to cart: ', error);
+            checkoutError = 'Could not open your cart. Please use the Return to Cart link.';
+        }
+    }
+
     onMount(() => {
         try {
             loadCart();
 
+            const requested = consumeConfirmation();
+
             if (countItems() === 0) {
-                // eslint-disable-next-line svelte/no-navigation-without-resolve
-                void goto(`${resolve('/cart')}?reason=empty-cart`, {
-                    replaceState: true
-                });
+                void returnToCart('empty-cart');
+                return;
+            }
+
+            if (requested === null) {
+                void returnToCart('not-confirmed');
                 return;
             }
 
             // how many free bagels the cart page asked for, double-checked
             // against what the user really has so the URL can't be abused
             loadRewards();
-            const requested = Number(page.url.searchParams.get('free')) || 0;
+
             const free = Math.max(
                 0,
-                Math.min(Math.floor(requested), countItems(), freeAvailable())
+                Math.min(
+                    Math.floor(requested), 
+                    countItems(), 
+                    freeAvailable()
+                )
             );
 
             const order = saveOrder(cart.items, free);
 
-            purchasedItems = order.items;
+            purchasedItems = $state.snapshot(order.items);
             itemCount = order.itemCount;
             total = order.total;
             freeBagels = order.freeBagels ?? 0;
@@ -61,8 +83,8 @@
             ready = true;
         } catch (error) {
             console.error('Checkout failed: ', error);
-            checkoutError = "We coudn't finish saving your order. \
-            Please go back to your cart and try again.";
+            checkoutError = "We coudn't finish saving your order. " +
+            "Please go back to your cart and try again.";
         }
     });
 </script>

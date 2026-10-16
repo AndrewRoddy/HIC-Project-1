@@ -45,7 +45,7 @@
       </li>
 
       <li class="perk">
-        <ul>
+        <ul class="exponential-equations">
           <li>Buy 2 get 1 free!</li>
           <li>Buy 4 get 2 free!</li>
           <li>Buy 8 get 3 free!</li>
@@ -121,14 +121,22 @@
     font-size: 2em;
   }
 
-  .perk h3 {
-    color: var(--text);
-  }
-
   .perk p{
     margin: 0;
     line-height: 1.6;
     color: var(--text);
+  }
+
+  .exponential-equations {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+    color: var(--text);
+    line-height: 1.6;
+    max-width: 500px;
+    width: 250px;
   }
 
   .actions {
