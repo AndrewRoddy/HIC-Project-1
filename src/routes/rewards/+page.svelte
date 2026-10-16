@@ -1,7 +1,13 @@
 <script lang="ts">
   import '../../app.css';
   import { onMount } from 'svelte';
-  import { rewards, loadRewards, setName } from '$lib/state/rewards.svelte';
+  import {
+    rewards,
+    loadRewards,
+    setName,
+    tiers,
+    freeAvailable
+  } from '$lib/state/rewards.svelte';
 
   let name = $state('');
 
@@ -24,17 +30,8 @@
     setName(trimmed);
   }
 
-  // bagels tier list
-  const tiers = [
-    { bagels: 2, free: 1, layout: 'stack', flavor: 'Plain' },
-    { bagels: 4, free: 2, layout: 'stack', flavor: 'Garlic' },
-    { bagels: 8, free: 3, layout: 'stack', flavor: 'Cranberry' },
-    { bagels: 16, free: 4, layout: 'stack', flavor: 'Everything' },
-    { bagels: 32, free: 5, layout: 'stack', flavor: 'Honey-Wholewheat' }
-  ];
-
-  // highest tier reached so far, and the next one to unlock
-  let earned = $derived(tiers.filter((tier) => rewards.points >= tier.bagels).at(-1));
+  // free bagels still available to use at checkout, and the next tier to unlock
+  let available = $derived(freeAvailable());
   let next = $derived(tiers.find((tier) => rewards.points < tier.bagels));
 </script>
 
@@ -63,11 +60,7 @@
 
   <p class="progress">
     Bagels bought: {rewards.points}.
-    {#if earned}
-      Current reward: {earned.free} free.
-    {:else}
-      No reward unlocked yet.
-    {/if}
+    Free bagels available: {available}.
     {#if next}
       Buy {next.bagels - rewards.points} more to unlock {next.free} free.
     {:else}

@@ -1,5 +1,6 @@
 import type { BagelData } from "./cart.svelte";
 import { SvelteDate } from "svelte/reactivity";
+import { discountFor } from "./rewards.svelte";
 
 type OrderItem = BagelData & {
     quantity: number;
@@ -9,8 +10,10 @@ export type Order = {
     id: string;
     createdAt: string;
     items: OrderItem[];
-    total: number;
+    total: number; // what was actually paid, after any free bagels
     itemCount: number;
+    freeBagels?: number;
+    discount?: number;
 };
 
 const KEY = 'bagl-orders';
@@ -36,12 +39,18 @@ export function loadOrders() {
     orders.items = parsed as Order[];
 }
 
-export function saveOrder(items: OrderItem[]): Order {
+export function saveOrder(items: OrderItem[], freeBagels = 0): Order {
     if (items.length === 0) {
         throw new Error('Cannot save an empty order.');
     }
 
     loadOrders();
+
+    const subtotal = items.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+    );
+    const discount = discountFor(items, freeBagels);
 
     const order: Order = {
         id: crypto.randomUUID(),
@@ -49,15 +58,15 @@ export function saveOrder(items: OrderItem[]): Order {
 
         items: items.map((item) => ({...item})),
 
-        total: items.reduce(
-            (sum, item) => sum + item.price * item.quantity,
-            0
-        ),
+        total: subtotal - discount,
 
         itemCount: items.reduce(
             (sum, item) => sum + item.quantity,
             0
-        )
+        ),
+
+        freeBagels,
+        discount
     };
 
     const updated = [order, ...orders.items];

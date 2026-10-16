@@ -9,11 +9,19 @@
     import { goto } from '$app/navigation';
     import { resolve } from '$app/paths';
     import { saveOrder } from '$lib/state/orders.svelte';
-    import { addPoints } from '$lib/state/rewards.svelte';
+    import { page } from '$app/state';
+    import {
+        addPoints,
+        freeAvailable,
+        loadRewards,
+        spendFree
+    } from '$lib/state/rewards.svelte';
 
     let purchasedItems = $state<typeof cart.items>([]);
     let itemCount = $state(0);
     let total = $state(0);
+    let freeBagels = $state(0);
+    let discount = $state(0);
     let ready = $state(false);
     let checkoutError = $state('');
 
@@ -29,14 +37,25 @@
                 return;
             }
 
-            const order = saveOrder(cart.items);
+            // how many free bagels the cart page asked for, double-checked
+            // against what the user really has so the URL can't be abused
+            loadRewards();
+            const requested = Number(page.url.searchParams.get('free')) || 0;
+            const free = Math.max(
+                0,
+                Math.min(Math.floor(requested), countItems(), freeAvailable())
+            );
+
+            const order = saveOrder(cart.items, free);
 
             purchasedItems = order.items;
             itemCount = order.itemCount;
             total = order.total;
+            freeBagels = order.freeBagels ?? 0;
+            discount = order.discount ?? 0;
 
-            console.log('about to add points:', order.itemCount);
-            addPoints(order.itemCount);   // adds 1 point per bagel
+            spendFree(free);                  // use up the redeemed bagels
+            addPoints(order.itemCount - free); // 1 point per PAID bagel only
 
             clearCart();
             ready = true;
@@ -63,6 +82,10 @@
                 </li>
             {/each}
         </ul>
+
+        {#if freeBagels > 0}
+            <p>-${discount.toFixed(2)} | Free bagels × {freeBagels}</p>
+        {/if}
 
         <hr class="solid" style="width: 50%; margin: 0;">
 
