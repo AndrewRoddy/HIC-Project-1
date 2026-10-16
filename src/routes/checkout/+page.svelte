@@ -89,6 +89,10 @@
     });
 </script>
 
+<svelte:head>
+    <title>Checkout | Bagl</title>
+</svelte:head>
+
 {#if checkoutError}
     <p role="alert">{checkoutError}</p>
     <a href={resolve('/cart')}>Return to Cart</a>

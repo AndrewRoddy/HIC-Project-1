@@ -1,6 +1,10 @@
 <script lang="ts">
 </script>
 
+<svelte:head>
+    <title>About | Bagl</title>
+</svelte:head>
+
 <h1 class="page-header">About Us</h1>
 
 <div class="about">

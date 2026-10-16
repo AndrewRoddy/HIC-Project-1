@@ -75,6 +75,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>{name} | Bagl</title>
+</svelte:head>
+
 <h1 class="page-header">Bagel Info</h1>
 
 <div class="bagel-section">

@@ -2,6 +2,10 @@
   import Bagel from '../../lib/components/Bagel.svelte';
 </script>
 
+<svelte:head>
+  <title>Order | Bagl</title>
+</svelte:head>
+
 <div class="page-header">
   <h1>Buy a Bagel</h1>
   <p>Click on any bagel to add it to your cart!</p>

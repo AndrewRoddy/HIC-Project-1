@@ -26,6 +26,10 @@
   });
 </script>
 
+<svelte:head>
+  <title>Order History | Bagl</title>
+</svelte:head>
+
 <h1 class="page-header">Order History</h1>
 
 {#if !ready}
