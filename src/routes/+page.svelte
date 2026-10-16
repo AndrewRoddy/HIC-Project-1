@@ -55,7 +55,9 @@
   .page-header {
     color: var(--text);
     text-align: left;
-    padding-left: 0.75em;
+    padding-left: 0.25em;
+    font-size: 3.5em;
+
   }
 
   .home {
@@ -70,13 +72,14 @@
   .mission {
     min-width: 0;
     color: var(--text);
+    font-size: 1.5em;
   }
 
   .membership {
     width: 100%;
     max-width: 800px;
     justify-self: center;
-    align-self: center;
+    align-self: start;
   }
 
   h2 {
@@ -98,6 +101,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    color: var(--text);
   }
 
   .perk {
@@ -106,7 +110,9 @@
     padding: 24px;
     background-color: var(--surface);
     border: 1px solid var(--accent);
+    color: var(--text);
     border-radius: 1em;
+    font-size: 2em;
   }
 
   .perk h3 {
@@ -116,7 +122,7 @@
   .perk p{
     margin: 0;
     line-height: 1.6;
-    color: var(--text-muted);
+    color: var(--text);
   }
 
   .actions {
@@ -137,7 +143,7 @@
     min-height: 38px;
     padding: 8px 16px;
     border: none;
-    border-radius: 1em;
+    border-radius: .5em;
     background-color: var(--accent);
     color: var(--bg-deep);
     text-align: center;
@@ -146,7 +152,7 @@
     font-family:
       'Trebuchet MS', 'Lucida Sans Unicode',
       'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 0.875rem;
+    font-size: 1em;
   }
 
   .action-button:hover{

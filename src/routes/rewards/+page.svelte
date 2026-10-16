@@ -120,7 +120,7 @@
 
   label {
     display: block;
-    font-size: 1.4em;
+    font-size: 1.3em;
     margin-bottom: 0.5em;
   }
 
