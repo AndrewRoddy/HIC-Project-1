@@ -9,7 +9,8 @@
   </div>
   <br />
   <div class="subtext">
-    Press 'Alt' or 'Option' to display keyboard shortcuts.
+    Press '?', 'Alt', or 'Option' to display keyboard
+    shortcuts.
   </div>
   <br />
   <div class="subtext">© 2026 all rights reserved.</div>

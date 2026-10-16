@@ -43,6 +43,7 @@
         e.preventDefault();
         break;
       case 'Alt':
+      case '?':
         if (is_alt_down) {
           is_alt_down = false;
         } else {
