@@ -60,7 +60,11 @@ On this home page, the two buttons at the bottom allow the user to be fully in c
   image("img/order.png"),
   caption: "The order page."
 )
+<<<<<<< Updated upstream
 The order pag shows all of our different bagel options. The user can easily click on any of the bagels to add one of them to their cart. Once they click on one of the bagels, they are taken to the Bagl Info Page to increase or decrease their bagel count.
+=======
+The order page shows all of our different bagel options. The user can easily click on any of the bagels to add one of them to their cart. Once they click on one of the bagels, they are taken to the Bagl Info page to increase or decrease their bagel count.
+>>>>>>> Stashed changes
 
 This page implementes golden rule eight as it has the bagel image, name, and price on every card, reducing the short term memory load needed by the user. It also pops out each bagel, and highlights on hover, as informative feedback for the user implementing golden rule three.
 
@@ -112,11 +116,15 @@ This page allows the user to not have to remember all of their past purchases im
   image("img/rewards.png"),
   caption: "The rewards page."
 )
+<<<<<<< Updated upstream
 #figure(
   image("img/rewards-more.png"),
   caption: "The rewards page with rewards unlocked."
 )
 The rewards page lets customers join the Bagl membership program by entering their preferred name. The input is sanitized and accepts only letters, spaces, hyphens and apostrophes and is saved in the browser’s local storage. This makes it so that the home page can greet returning users by their name. Buying a bagel earns one point which is automatically added during checkout. The highest tier that you have reached determines how many free bagels a customer has earned in total. The page shows the customer’s bagels bought, free bagels available, and how many more purchases unlock the next tier, with unlocked tier cards highlighted. In the cart when you have free bagels available a checkbox appears, which the customer can select to get free bagels depending on their availability. All reward data is in local storage, it is tied to one browser and device.
+=======
+The rewards page lets customers join the Bagl membership program by entering their preferred name. The input box supports enter key accepting the string of characters, which is rule number 2. The input is sanitized and accepts only letters, spaces, hyphens and apostrophes and is saved in the browser’s local storage. This makes it so that the home page can greet returning users by their name. Buying a bagel earns one point which is automatically added during checkout. The highest tier that you have reached determines how many free bagels a customer has earned in total. The page shows the customer’s bagels bought, free bagels available, and how many more purchases unlock the next tier, with unlocked tier cards highlighted. In the cart when you have free bagels available a checkbox appears, which the customer can select to get free bagels depending on their availability. This adheres to the golden rule number 6 which permits easy reversal of actions, by just unselecting the checkbox. All reward data is in local storage, it is tied to one browser and device.
+>>>>>>> Stashed changes
 
 = About Page
 #figure(
