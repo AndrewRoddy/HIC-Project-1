@@ -110,7 +110,7 @@ The checkout page has a thank you message and itemized receipt after completing 
   image("img/rewards.png"),
   caption: "The rewards page."
 )
-...
+The rewards page lets customers join the Bagl membership program by entering their preferred name. The input is sanitized and accepts only letters, spaces, hyphens and apostrophes and is saved in the browser’s local storage. This makes it so that the home page can greet returning users by their name. Buying a bagel earns one point which is automatically added during checkout. The highest tier that you have reached determines how many free bagels a customer has earned in total. The page shows the customer’s bagels bought, free bagels available, and how many more purchases unlock the next tier, with unlocked tier cards highlighted. In the cart when you have free bagels available a checkbox appears, which the customer can select to get free bagels depending on their availability. All reward data is in local storage, it is tied to one browser and device.
 
 = Hotkeys
 #figure(
@@ -120,13 +120,13 @@ The checkout page has a thank you message and itemized receipt after completing 
 ...
 
 = Group Contributions
-Anddrew Roddy created the repository and initial README. He setup the structure of the SvelteKit project and organized the routes to navigate through the website. Then, he added all 11 of the bagel images that you see in the repository, made and styled the bagel card components in the order page. He continued to improve the CSS for the order page by adding a hover element.
+Anddrew Roddy created the repository and initial README. He setup the structure of the SvelteKit project and organized the routes to navigate through the website. Then, he added all 11 of the bagel images that you see in the repository, made and styled the bagel card components in the order page. Continued to improve the CSS for the order page by adding effects to the card. He built the shopping cart application with a working total, and saved the cart to local storage. Created a global color theme to have consistent looking pages. Made shortcuts for the application to make it more accessible to a variety of users. Fixed hotkey bugs like shortcut firing while typing in input field, binding the option key as an alternative to alt for mac users. Wrote the installation instructions and created the report fro submission.
 
-Savar Shrestha created the discord chat and organized the group to have a total of 4 members. He tested out the javascript framework by loading bagel images 
+Savar Shrestha created the discord chat and organized the group to have a total of 4 members. Initially he tested out the javascript framework by loading bagel images. Created the very first version of the rewards page and fixed color scheme issues. Redesigned the rewards page to have a "Sign Up" form and sanitized the input. Created the tier logic and cards with stacked bagel images. Built the reward point system which saves the name and points in local storage and connected it to the cart, home page, checkout, and order history. So, the home page can greet returning users by name. Fixed the font size of different pages making them more visible and CSS. At the end, he co-authored the report with Andrew Roddy. 
 
-Tatiana Tkacheva 
+Tatiana Tkacheva built the bagel info page that 
 
-Michael Bonanno
+Michael Bonanno created the home page that has a welcome heading, the mission statement for the business, the membership perks, and the buttons which lead you to the associated pages. Then, he aligned and adjusted the home page and created an about page writing about the history of the business. 
 
 
 = Running the application
