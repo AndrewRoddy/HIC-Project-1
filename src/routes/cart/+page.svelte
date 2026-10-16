@@ -9,9 +9,22 @@
   } from '$lib/state/cart.svelte';
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
+  import { onMount } from 'svelte';
+  import {
+    loadRewards,
+    freeAvailable,
+    discountFor
+  } from '$lib/state/rewards.svelte';
 
   const itemCount = $derived(countItems());
   const total = $derived(getPrice());
+
+  // free bagels: use as many as are available, up to the bagels in the cart
+  let useFree = $state(false);
+  const freeCount = $derived(Math.min(freeAvailable(), itemCount));
+  const discount = $derived(useFree ? discountFor(cart.items, freeCount) : 0);
+
+  onMount(loadRewards);
 </script>
 
 <h1 class="page-header">My Cart</h1>
@@ -84,7 +97,20 @@
       {itemCount}
     </p>
     <p>Subtotal: ${total.toFixed(2)}</p>
-    <a href={resolve('/checkout')}>
+
+    {#if freeCount > 0}
+      <label class="free-toggle">
+        <input type="checkbox" bind:checked={useFree} />
+        Use {freeCount} free {freeCount === 1 ? 'bagel' : 'bagels'}
+      </label>
+    {/if}
+
+    {#if useFree && discount > 0}
+      <p>Free bagels: -${discount.toFixed(2)}</p>
+      <p>Total: ${(total - discount).toFixed(2)}</p>
+    {/if}
+
+    <a href="{resolve('/checkout')}?free={useFree ? freeCount : 0}">
       <button
         class="checkout-button"
         type="button"
@@ -141,6 +167,14 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 40px;
+  }
+
+  .free-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin: 0.5em 0;
+    cursor: pointer;
   }
 
   .cart-summary {

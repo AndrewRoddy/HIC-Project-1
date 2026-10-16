@@ -1,65 +1,87 @@
 <script lang="ts">
   import '../../app.css';
-  let name = ' ';
-  
+  import { onMount } from 'svelte';
+  import {
+    rewards,
+    loadRewards,
+    setName,
+    tiers,
+    freeAvailable
+  } from '$lib/state/rewards.svelte';
+
+  let name = $state('');
+
+  // load the saved name and points once the page is in the browser
+  onMount(() => {
+    loadRewards();
+    name = rewards.name;
+  });
+
   // input sanitation
   function cleanName() {
     name = name.replace(/[^\p{L}\s'-]/gu, '');
   }
 
-  // bagels tier list
-  const tiers = [
-    { bagels: 2, free: 1, layout: 'stack', flavor: 'Plain' },
-    { bagels: 4, free: 2, layout: 'stack', flavor: 'Garlic' },
-    { bagels: 8, free: 3, layout: 'stack', flavor: 'Cranberry' },
-    { bagels: 16, free: 4, layout: 'stack', flavor: 'Everything' },
-    { bagels: 32, free: 5, layout: 'stack', flavor: 'Honey-Wholewheat' }
-  ]
+  function handleSubmit(event: SubmitEvent) {
+    event.preventDefault(); // stop the page from reloading
+    const trimmed = name.trim();
+    if (!trimmed) return;
+
+    setName(trimmed);
+  }
+
+  // free bagels still available to use at checkout, and the next tier to unlock
+  let available = $derived(freeAvailable());
+  let next = $derived(tiers.find((tier) => rewards.points < tier.bagels));
 </script>
 
 <div class="motto">
   <h1>Eat bagels. Earn rewards. Get free dough.</h1>
 </div>
 
-<div class="sign-up"> 
-  <h2>SIGN UP</h2>
+<div class="sign-up">
+  <h2>{rewards.name ? `Welcome, ${rewards.name}` : 'Sign Up'}</h2>
   <label for="name">Enter your preferred name</label>
-  <form>
-    <input 
-    id="name" 
-    type="text" 
-    maxlength="35"
-    placeholder="John Smith" 
-    oninput={cleanName}
-    bind:value={name}
-    /> 
+  <form class="name-row" onsubmit={handleSubmit}>
+    <input
+      id="name"
+      type="text"
+      maxlength="35"
+      placeholder="John Smith"
+      oninput={cleanName}
+      bind:value={name}
+    />
+    <button type="submit" disabled={!name.trim()}>Submit</button>
   </form>
-  <button type="submit">Submit</button> 
 </div>
 
-
 <div class="rewards">
-  <h2>REWARDS</h2>
-  
+  <h2>Rewards</h2>
+
+  <p class="progress">
+    Bagels bought: {rewards.points}.
+    Free bagels available: {available}.
+    {#if next}
+      Buy {next.bagels - rewards.points} more to unlock {next.free} free.
+    {:else}
+      You've unlocked every reward!
+    {/if}
+  </p>
+
   <div class="tiers">
-    {#each tiers as tier}
-      <div class="tier">
+    {#each tiers as tier (tier.bagels)}
+      <div class="tier" class:reached={rewards.points >= tier.bagels}>
         <div class="pic {tier.layout}">
           {#each { length: tier.free } as _}
             <img src="/bagels/{tier.flavor}-Bagel.webp" alt="{tier.flavor} bagel" />
           {/each}
         </div>
         <p class="buy">Buy {tier.bagels}</p>
-        <p class="free">
-        Get {tier.free} free
-        </p>
+        <p class="free">Get {tier.free} free</p>
       </div>
     {/each}
   </div>
-  
 </div>
-
-
 
 <style>
   .motto {
@@ -102,6 +124,12 @@
     margin-bottom: 0.5em;
   }
 
+  /* input and button side by side */
+  .name-row {
+    display: flex;
+    gap: 0.5em;
+  }
+
   input {
     font-size: 1.2em;
     padding: 0.3em 0.5em;
@@ -115,19 +143,38 @@
     outline: none;
     border-color: var(--accent);
   }
- 
-  input::placeholder {
-  color: var(--text-subtle);
-}
 
-button {
-  font-size: 1em;
-  padding: 0.3em 1em;
-  background-color: var(--accent);
-  color: var(--bg-deep);
-  border: 1px solid var(--accent);
-  cursor: pointer;
-}
+  input::placeholder {
+    color: var(--text-subtle);
+  }
+
+  button {
+    font-family: inherit;
+    font-size: 1em;
+    padding: 0.3em 1em;
+    background-color: var(--accent);
+    color: var(--bg-deep);
+    border: 1px solid var(--accent);
+    cursor: pointer;
+  }
+
+  button:hover:not(:disabled) {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+  }
+
+  button:disabled {
+    background-color: var(--surface-hover);
+    border-color: var(--border);
+    color: var(--text-subtle);
+    cursor: not-allowed;
+  }
+
+  .progress {
+    font-size: 1em;
+    margin: 0 0 1em;
+    color: var(--text-muted);
+  }
 
   .tiers {
     display: grid;
@@ -140,6 +187,11 @@ button {
     border: 1px solid var(--border);
     text-align: center;
     padding: 1em;
+  }
+
+  /* tiers the user has already unlocked */
+  .tier.reached {
+    border-color: var(--accent);
   }
 
   .buy {

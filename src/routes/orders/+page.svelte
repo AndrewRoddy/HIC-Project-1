@@ -54,6 +54,14 @@
               </p>
             </li>
           {/each}
+          {#if order.freeBagels}
+            <li>
+              <p>
+                -${(order.discount ?? 0).toFixed(2)} | Free bagels
+                × {order.freeBagels}
+              </p>
+            </li>
+          {/if}
         </ul>
 
         <hr class="solid" style="width: 25%; margin: 0;" />
