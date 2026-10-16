@@ -93,7 +93,7 @@ The order summary always shows the item count and the subtotal which reduces the
   image("img/checkout.png"),
   caption: "The checkout page."
 )
-...
+
 The checkout page shows the order summary after the user places their order. It shows a receipt like structure of the transaction the user just completed. It shows price of each item and the total cost. It also confirms that the user's order went through and links to the order history page at the bottom. if the user's cart is empty it redirects them back to the ordering page to get more bagels.
 
 
@@ -124,7 +124,6 @@ The rewards page lets customers join the Bagl membership program by entering the
   image("img/about-footer.png"),
   caption: "The about page button in the footer."
 )
-...
 
 = Hotkeys
 #figure(
