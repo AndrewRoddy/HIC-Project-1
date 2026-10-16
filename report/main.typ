@@ -83,7 +83,9 @@ This page offers informative feedback as pressing add to cart quickly becomes th
   image("img/cart.png"),
   caption: "The cart page."
 )
-The cart page allows the user to see what bagels they are preparing to purchase. It allows us as users to 
+The cart page allows the user to see what bagels they are preparing to purchase. It allows us as users to increase and decrease count of each bagel. The checkout page also has a `Checkout` button that when clicked makes the purchase. When the user has rewards saved up, they can spend these rewards also on the checkout page by checking a box to confirm that they want to use the reward to get a free bagel.
+
+The order summary always shows the item count and the subtotal which reduces the short term memory load of the user allowing them to always know exactly how much the purchase will cost them even as they add or remove bagels, implementing rule eight. The checkout is disabled when the cart is empty and a message is shown that tells the user their cart is empty. This helps to prevent errors before they happen and implements rule five. We are also able to easily increase the counts of our items and derease them easily, like the bagel info page, allowing easy reversal of actions, implementing rule six. By allowing the user to easily decide when to checkout, modify bagel counts, and have their total on the side, we make the user feel like they are completely in control implementing rule seven. By having the same quantity controls as the bagel information page we establish consistency across the application.
 
 
 = Checkout Page
@@ -92,6 +94,9 @@ The cart page allows the user to see what bagels they are preparing to purchase.
   caption: "The checkout page."
 )
 ...
+
+
+The checkout page has a thank you message and itemized receipt after completing the purchase. This dialogue yields closure to the user that their purchase went through implementing golden rule four. The `Checkout` button is also grayed out in the order summary preventing errors before they happen and implementing golden rule five. 
 
 = History Page
 #figure(
