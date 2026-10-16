@@ -52,7 +52,7 @@ The page or feature that best implements each golden rule.
 )
 When the user first opens the application they are taken to the home page. This page shows the user our rewards and explains the website. It also features buttons that suggest the next actions the user will likely take. The buttons allow the user to quickly place an order or become a member.
 
-The entire application applies the first golden rule of consistency. All of the applications have the same navbar, footer, and color pallette. They share the same accent color of \#ff922f orange, our company color.
+The entire application applies the first golden rule of consistency. All of the applications have the same navbar, footer, and color pallette. They share the same accent color of `#ff922f` orange, our company color.
 On this home page, the two buttons at the bottom allow the user to be fully in control applying by allowing them to easily choose to either order now or join the rewards program, applying the seventh golden rule. 
 For keyboard users we also feature a visible outline on all of our navbar buttons and also our 'Order Now' and 'Become a Member' buttons, this applies the 2nd golden rule of universal usability. 
 
@@ -61,11 +61,11 @@ For keyboard users we also feature a visible outline on all of our navbar button
   image("img/order.png"),
   caption: "The order page."
 )
-The order pag shows all of our different bagel options. The user can easily click on any of the bagels to add one of them to their cart. Once they click on one of the bagels, they are taken to the Bagel Info page to increase or decrease their bagel count.
+The order pag shows all of our different bagel options. The user can easily click on any of the bagels to add one of them to their cart. Once they click on one of the bagels, they are taken to the Bagl Info page to increase or decrease their bagel count.
 
 This page implementes golden rule eight as it has the bagel image, name, and price on every card, reducing the short term memory load needed by the user. It also pops out each bagel, and highlights on hover, as informative feedback for the user implementing golden rule three.
 
-= Bagel Info Page
+= Bagl Info Page
 #figure(
   image("img/bagel-info.png"),
   caption: "The bagel info page."
@@ -74,7 +74,7 @@ This page implementes golden rule eight as it has the bagel image, name, and pri
   image("img/bagel-info-more.png"),
   caption: "The bagel info page after pressing 'Add to Cart'."
 )
-After clicking on a bagel the user is taken to the Bagel Info Page. This allows the user to see the calorie information relating to each bagel and allows them to confirm that they would like to add the bagel to the cart. Once the bagel is added to the cart the user can then increase or decrease the number of bagels that they would like to purchase. If they decide against purchasing the bagel they can easily press the `Delete` button. The cost in the cart also updates live as the number of bagels in the cart increases and decreases.
+After clicking on a bagel the user is taken to the Bagl Info Page. This allows the user to see the calorie information relating to each bagel and allows them to confirm that they would like to add the bagel to the cart. Once the bagel is added to the cart the user can then increase or decrease the number of bagels that they would like to purchase. If they decide against purchasing the bagel they can easily press the `Delete` button. The cost in the cart also updates live as the number of bagels in the cart increases and decreases.
 
 This page offers informative feedback as pressing add to cart quickly becomes the quantity controls. The cost of the entire purchase also updating in the navbar as the user adds and subtracts amounts adds to this informative feedback implementing the third golden rule. We offer simple error handling as we disable the minus button at 1 bagel. This prevents the user from having 0 or negative bagels, implementing rule five. We also allow the user to undo their actions as `Delete` removes the bagel from the cart and the minus button allows the user to undo accidentally adding an extra bagel. This implements rule six. We also reduce short term memory load as the user can see exactly how many of that bagel are in their cart in between the plus and minus, and the total cost of the transaction easily in the top right. This reduction of short term memory load helps to implement rule eight.
 
