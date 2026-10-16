@@ -115,6 +115,15 @@ The cart page allows the user to see what bagels they are preparing to purchase.
 ...
 
 = Group Contributions
+Anddrew Roddy created the repository and initial README. He setup the structure of the SvelteKit project and organized the routes to navigate through the website. Then, he added all 11 of the bagel images that you see in the repository, made and styled the bagel card components in the order page. He continued to improve the CSS for the order page by adding a hover element.
+
+Savar Shrestha created the discord chat and organized the group to have a total of 4 members. He tested out the javascript framework by loading bagel images 
+
+Tatiana Tkacheva 
+
+Michael Bonanno
+
+
 = Running the application
 You can check out the application at: https://bagl-pi.vercel.app/
 
