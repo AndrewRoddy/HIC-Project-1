@@ -38,6 +38,7 @@
 
 <style>
   .navbar {
+    flex-wrap: wrap;
     margin: 0em;
     padding: 0.5em;
     justify-content: center;

@@ -2,7 +2,10 @@
   import Bagel from '../../lib/components/Bagel.svelte';
 </script>
 
-<h1 class="page-header">Buy a Bagel</h1>
+<div class="page-header">
+  <h1>Buy a Bagel</h1>
+  <p>Click on any bagel to add it to your cart!</p>
+</div>
 
 <div class="bagel-bin">
   <Bagel
@@ -47,18 +50,18 @@
     price={9.5}
     cal={280}
   />
-  <Bagel 
+  <Bagel
     id={7}
-    img="Onion-Bagel.webp" 
-    name="Onion" 
-    price={9.5} 
+    img="Onion-Bagel.webp"
+    name="Onion"
+    price={9.5}
     cal={280}
   />
-  <Bagel 
+  <Bagel
     id={8}
-    img="Plain-Bagel.webp" 
-    name="Plain" 
-    price={9.5} 
+    img="Plain-Bagel.webp"
+    name="Plain"
+    price={9.5}
     cal={270}
   />
   <Bagel
@@ -103,5 +106,9 @@
 
   h1 {
     color: var(--text);
+  }
+  p {
+    font-size: 1.2rem;
+    margin: 0;
   }
 </style>

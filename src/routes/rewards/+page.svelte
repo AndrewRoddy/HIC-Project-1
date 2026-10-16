@@ -120,7 +120,7 @@
 
   label {
     display: block;
-    font-size: 1.4em;
+    font-size: 1.3em;
     margin-bottom: 0.5em;
   }
 
@@ -136,6 +136,7 @@
     background-color: var(--bg-deep);
     color: var(--text);
     border: 1px solid var(--border);
+    border-radius: 0.5em;
   }
 
   /* accessibility for better visual */
@@ -156,6 +157,7 @@
     color: var(--bg-deep);
     border: 1px solid var(--accent);
     cursor: pointer;
+    border-radius: 0.5em;
   }
 
   button:hover:not(:disabled) {
@@ -187,6 +189,8 @@
     border: 1px solid var(--border);
     text-align: center;
     padding: 1em;
+    display: flex;
+    flex-direction: column;
   }
 
   /* tiers the user has already unlocked */
@@ -228,10 +232,14 @@
   }
 
   .stack img:nth-child(odd) {
-    transform: translateX(-50px);
+    transform: translateX(-30px);
   }
 
   .stack img:nth-child(even) {
-    transform: translateX(10px);
+    transform: translateX(30px);
   }
+
+  .stack img:only-child {
+  transform: none;
+}
 </style>

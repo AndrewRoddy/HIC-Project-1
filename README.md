@@ -1,12 +1,6 @@
-# HIC Project 1
+# Bagl (HIC Project 1)
 
-Requirements
-
-1. Working implementation
-2. 7-9 distinct pages
-3. Application of the golden rules
-4. Documentation
-5. And a short report, code and README file, how to run the code, explain what you have implemented
+The best place to buy bagels! An application with the goal of fully implementing Schneiderman's 8 golden rules.
 
 ### Installation
 
