@@ -143,7 +143,7 @@ Anddrew Roddy created the repository and initial README. He setup the structure 
 
 Savar Shrestha created the discord chat and organized the group to have a total of 4 members. Initially he tested out the javascript framework by loading bagel images. Created the very first version of the rewards page and fixed color scheme issues. Redesigned the rewards page to have a "Sign Up" form and sanitized the input. Created the tier logic and cards with stacked bagel images. Built the reward point system which saves the name and points in local storage and connected it to the cart, home page, checkout, and order history. So, the home page can greet returning users by name. Fixed the font size of different pages making them more visible and CSS. At the end, he co-authored the report with Andrew Roddy. 
 
-Tatiana Tkacheva built the bagel info page that 
+Tatiana Tkacheva built the bagel info page that adds bagels to the cart. Worked on the cart page and improved the interaction when clicking a bagel. Made the final structure for the cart page and cleaned up how the cart state is managed. She built the checkout page with confirmation and recepit of the purchase. Added a link to the order page when the customer goes to an empty cart. Afterwards, built the order history page and fixed a pricing bug. Also, redisgned the homepage layout.
 
 Michael Bonanno created the home page that has a welcome heading, the mission statement for the business, the membership perks, and the buttons which lead you to the associated pages. Then, he aligned and adjusted the home page and created an about page writing about the history of the business. 
 
