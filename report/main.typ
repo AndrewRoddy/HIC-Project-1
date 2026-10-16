@@ -123,7 +123,7 @@ The rewards page lets customers join the Bagl membership program by entering the
   image("img/about-footer.png"),
   caption: "The about page button in the footer."
 )
-The about page includes the story of how the business came to be about. It has the name of the individuals who contributed to make the business. 
+The about page which is linked in the footer of the website includes a fun little story of how the business came to be about. It has the name of the individuals who contributed to make the business. 
 
 = Hotkeys
 #figure(
