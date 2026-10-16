@@ -1,5 +1,13 @@
+<script>
+  import { resolve } from '$app/paths';
+</script>
+
 <div class="footer">
   <h1>BAGL</h1>
+  <div class="about">
+    <a id="aboutID" href={resolve('/about')}>About</a>
+  </div>
+  <br />
   <div class="subtext">
     Press 'Alt' or 'Option' to display keyboard shortcuts.
   </div>
@@ -24,6 +32,11 @@
   }
 
   .subtext {
+    font-size: 1.5em;
+    color: var(--text-subtle);
+  }
+
+  #aboutID {
     font-size: 1.5em;
     color: var(--text-subtle);
   }

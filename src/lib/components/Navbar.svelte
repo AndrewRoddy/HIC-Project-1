@@ -17,7 +17,6 @@
 
 <div class="navbar">
   <a id="homeID" href={resolve('/')}>Bagl</a>
-  <a id="aboutID" href={resolve('/about')}>About</a>
   <a id="orderID" href={resolve('/order')}>Order</a>
   <a id="historyID" href={resolve('/orders')}>History</a>
   <a id="rewardsID" href={resolve('/rewards')}>Rewards</a>
