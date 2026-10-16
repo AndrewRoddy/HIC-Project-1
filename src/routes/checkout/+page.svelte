@@ -9,6 +9,7 @@
     import { goto } from '$app/navigation';
     import { resolve } from '$app/paths';
     import { saveOrder } from '$lib/state/orders.svelte';
+    import { addPoints } from '$lib/state/rewards.svelte';
 
     let purchasedItems = $state<typeof cart.items>([]);
     let itemCount = $state(0);
@@ -33,6 +34,9 @@
             purchasedItems = order.items;
             itemCount = order.itemCount;
             total = order.total;
+
+            console.log('about to add points:', order.itemCount);
+            addPoints(order.itemCount);   // adds 1 point per bagel
 
             clearCart();
             ready = true;
