@@ -4,7 +4,8 @@
     cart,
     removeItem,
     countItems,
-    getPrice
+    getPrice,
+    modifyQuantity
   } from '$lib/state/cart.svelte';
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
@@ -17,11 +18,11 @@
 
 {#if page.url.searchParams.get('reason') === 'empty-cart'}
   <p class="cart-notice" role="status">
-    Checkout is not available because your cart is empty. 
-    Add some 
-      <a href={resolve('/order')}>bagels</a> 
+    Checkout is not available because your cart is empty.
+    Add some
+    <a href={resolve('/order')}>bagels</a>
     before placing an order!
-  </p>  
+  </p>
 {/if}
 
 <div class="cart">
@@ -41,14 +42,16 @@
               <button
                 type="button"
                 disabled={item.quantity <= 1}
-                onclick={() => item.quantity--}>-</button
+                onclick={() => modifyQuantity(item.id, -1)}
+                >-</button
               >
 
               <span>{item.quantity}</span>
 
               <button
                 type="button"
-                onclick={() => item.quantity++}>+</button
+                onclick={() => modifyQuantity(item.id, 1)}
+                >+</button
               >
             </div>
 
@@ -62,7 +65,9 @@
           </div>
         </li>
       {:else}
-        <li style="color: var(--text-muted); padding: 0.75em;">
+        <li
+          style="color: var(--text-muted); padding: 0.75em;"
+        >
           Your cart is empty.
         </li>
       {/each}
@@ -109,7 +114,7 @@
   .cart-notice a:hover {
     color: var(--accent-hover);
   }
-  
+
   h2 {
     color: var(--text);
   }

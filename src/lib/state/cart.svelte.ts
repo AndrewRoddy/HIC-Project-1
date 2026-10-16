@@ -1,104 +1,128 @@
 export type BagelData = {
-    id: number,
-    name: string,
-    img: string,
-    price: number,
+	id: number;
+	name: string;
+	img: string;
+	price: number;
 };
 
 type CartItem = BagelData & {
-    quantity: number;
+	quantity: number;
 };
 
 const KEY = 'bagl-cart';
 
 export const cart = $state({
-    items: [] as CartItem[]
+	items: [] as CartItem[]
 });
 
 function isCartItem(value: unknown): value is CartItem {
-    if (typeof value !== 'object' || value === null) return false;
+	if (typeof value !== 'object' || value === null)
+		return false;
 
-    const item = value as Record<string, unknown>;
+	const item = value as Record<string, unknown>;
 
-    return (
-        typeof item.id === 'number' &&
-        Number.isFinite(item.id) &&
-        typeof item.name === 'string' &&
-        typeof item.img === 'string' &&
-        typeof item.price === 'number' &&
-        Number.isFinite(item.price) &&
-        item.price >= 0 &&
-        typeof item.quantity === 'number' &&
-        Number.isInteger(item.quantity) &&
-        item.quantity > 0
-    );
+	return (
+		typeof item.id === 'number' &&
+		Number.isFinite(item.id) &&
+		typeof item.name === 'string' &&
+		typeof item.img === 'string' &&
+		typeof item.price === 'number' &&
+		Number.isFinite(item.price) &&
+		item.price >= 0 &&
+		typeof item.quantity === 'number' &&
+		Number.isInteger(item.quantity) &&
+		item.quantity > 0
+	);
 }
 
 export function loadCart() {
-    try {
-        const saved = localStorage.getItem(KEY);
-        if (!saved) return;
+	try {
+		const saved = localStorage.getItem(KEY);
+		if (!saved) return;
 
-        const items: unknown = JSON.parse(saved);
+		const items: unknown = JSON.parse(saved);
 
-        if (Array.isArray(items) && items.every(isCartItem)) {
-            cart.items = items;
-        }
-    } catch (error) {
-        console.warn('Could not load the saved cart: ', error);
-    }
+		if (Array.isArray(items) && items.every(isCartItem)) {
+			cart.items = items;
+		}
+	} catch (error) {
+		console.warn('Could not load the saved cart: ', error);
+	}
 }
 
 function saveCart() {
-    try {
-        localStorage.setItem(
-            KEY,
-            JSON.stringify($state.snapshot(cart.items))
-        );
-    } catch (error) {
-        console.warn('Could not save the cart: ', error);
-    }
+	try {
+		localStorage.setItem(
+			KEY,
+			JSON.stringify($state.snapshot(cart.items))
+		);
+	} catch (error) {
+		console.warn('Could not save the cart: ', error);
+	}
 }
 
 export function buyBagel(bagel: BagelData) {
-    const exists = cart.items.find(item => item.id === bagel.id);
+	const exists = cart.items.find(
+		(item) => item.id === bagel.id
+	);
 
-    if (exists) {
-        exists.quantity++;
-    } else {
-        cart.items.push({
-            ...bagel,
-            quantity: 1
-        });
-    }
+	if (exists) {
+		exists.quantity++;
+	} else {
+		cart.items.push({
+			...bagel,
+			quantity: 1
+		});
+	}
 
-    saveCart();
+	saveCart();
 }
 
 export function removeItem(id: number) {
-    cart.items = cart.items.filter((item) => item.id !== id);
+	cart.items = cart.items.filter((item) => item.id !== id);
 
-    saveCart();
+	saveCart();
 }
 
 export function clearCart() {
-    cart.items = [];
-    saveCart();
+	cart.items = [];
+	saveCart();
 }
 
 export function countItems() {
-    let sum = 0;
-    for (let i = 0; i < cart.items.length; i++) {
-      sum += cart.items[i].quantity;
-    }
-    return sum;
+	let sum = 0;
+	for (let i = 0; i < cart.items.length; i++) {
+		sum += cart.items[i].quantity;
+	}
+	return sum;
 }
 
 export function getPrice() {
-  let sum = 0;
+	let sum = 0;
 
-  for (let i = 0; i < cart.items.length; i++) {
-    sum += cart.items[i].quantity * cart.items[i].price;
-  }
-  return sum;
+	for (let i = 0; i < cart.items.length; i++) {
+		sum += cart.items[i].quantity * cart.items[i].price;
+	}
+	return sum;
+}
+
+export function modifyQuantity(id: number, change: number) {
+	// Gets the item
+	const item = cart.items.find((item) => item.id === id);
+
+	// If no change, don't change anything
+	if (change === 0) return;
+
+	// If the item is not in the cart already
+	if (!item) return;
+
+	// If negative change, make sure there is enough in the cart
+	if (change < 0 && item.quantity <= Math.abs(change))
+		return;
+
+	// Modifies the number in the cart by that value
+	item.quantity = item.quantity + change;
+
+	// Saves the change in the cart
+	saveCart();
 }

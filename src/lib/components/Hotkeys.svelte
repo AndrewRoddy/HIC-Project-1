@@ -1,54 +1,45 @@
 <script lang="ts">
-  let is_b_down: boolean,
-    is_o_down: boolean,
-    is_h_down: boolean,
-    is_r_down: boolean,
-    is_c_down: boolean = false;
-
   let is_alt_down = $state(false);
 
-  function key_action_runner(e: KeyboardEvent) {
+  function on_key_down(e: KeyboardEvent) {
+    // Doesn't set it again if its the same key pressed
+    if (e.repeat) return;
+
+    // Makes ctrl/meta key bypass my hotkeys
+    if (e.ctrlKey || e.metaKey) return;
+
+    // Doesn't count input field keys
+    if (e.target instanceof HTMLElement) {
+      if (
+        e.target.isContentEditable ||
+        e.target.tagName === 'INPUT' ||
+        e.target.tagName === 'TEXTAREA' ||
+        e.target.tagName === 'SELECT'
+      ) {
+        return;
+      }
+    }
+
+    // Sets key presses to true
     switch (e.key) {
       case 'b':
         document.getElementById('homeID')?.click();
+        e.preventDefault();
         break;
       case 'o':
         document.getElementById('orderID')?.click();
+        e.preventDefault();
         break;
       case 'h':
         document.getElementById('historyID')?.click();
+        e.preventDefault();
         break;
       case 'r':
         document.getElementById('rewardsID')?.click();
+        e.preventDefault();
         break;
       case 'c':
         document.getElementById('cartID')?.click();
-        break;
-    }
-  }
-
-  function on_key_down(e: KeyboardEvent) {
-    if (e.repeat) return;
-
-    switch (e.key) {
-      case 'b':
-        is_b_down = true;
-        e.preventDefault();
-        break;
-      case 'o':
-        is_o_down = true;
-        e.preventDefault();
-        break;
-      case 'h':
-        is_h_down = true;
-        e.preventDefault();
-        break;
-      case 'r':
-        is_r_down = true;
-        e.preventDefault();
-        break;
-      case 'c':
-        is_c_down = true;
         e.preventDefault();
         break;
       case 'Alt':
@@ -59,17 +50,6 @@
         }
         e.preventDefault();
         break;
-    }
-
-    if (
-      is_o_down ||
-      is_b_down ||
-      is_r_down ||
-      is_h_down ||
-      is_c_down ||
-      is_alt_down
-    ) {
-      key_action_runner(e);
     }
   }
 </script>
