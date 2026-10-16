@@ -112,6 +112,10 @@ This page allows the user to not have to remember all of their past purchases im
   image("img/rewards.png"),
   caption: "The rewards page."
 )
+#figure(
+  image("img/rewards-more.png"),
+  caption: "The rewards page with rewards unlocked."
+)
 The rewards page lets customers join the Bagl membership program by entering their preferred name. The input is sanitized and accepts only letters, spaces, hyphens and apostrophes and is saved in the browser’s local storage. This makes it so that the home page can greet returning users by their name. Buying a bagel earns one point which is automatically added during checkout. The highest tier that you have reached determines how many free bagels a customer has earned in total. The page shows the customer’s bagels bought, free bagels available, and how many more purchases unlock the next tier, with unlocked tier cards highlighted. In the cart when you have free bagels available a checkbox appears, which the customer can select to get free bagels depending on their availability. All reward data is in local storage, it is tied to one browser and device.
 
 = About Page
