@@ -54,7 +54,6 @@ When the user first opens the application they are taken to the home page. This 
 
 The entire application applies the first golden rule of consistency. All of the applications have the same navbar, footer, and color pallette. They share the same accent color of `#ff922f` orange, our company color.
 On this home page, the two buttons at the bottom allow the user to be fully in control applying by allowing them to easily choose to either order now or join the rewards program, applying the seventh golden rule. 
-For keyboard users we also feature a visible outline on all of our navbar buttons and also our 'Order Now' and 'Become a Member' buttons, this applies the 2nd golden rule of universal usability. 
 
 = Order Page
 #figure(
@@ -106,7 +105,7 @@ The checkout page has a thank you message and itemized receipt after completing 
 )
 The history page allows the user to see their entire history of every bagel they have purchased. It functions like a list of receipts, showing the user the time, date, prices, and total cost of each order.
 
-This page allows the user to not have to remember all of their past purchases implementing rule eight. This not only reduces the user's short term memory load but also the long term memory load! Because completed orders are saved permanently, the user is able to check to confirm at any point that their order went through yielding closure and implementing rule four.  
+This page allows the user to not have to remember all of their past purchases implementing rule eight. This not only reduces the user's short term memory load but also the long term memory load. Because completed orders are saved permanently, the user is able to check to confirm at any point that their order went through yielding closure and implementing rule four.  
 
 = Rewards Page
 #figure(
@@ -130,12 +129,9 @@ The rewards page lets customers join the Bagl membership program by entering the
   image("img/hotkeys.png"),
   caption: "The hotkeys dropdown acccessed by pressing ? / Alt / Option."
 )
-At the bottom of the page, in the footer, the user is shown that if they press 'Alt', 'Option', or '?' it will display keyboard shortcuts. Users who use the application and explore it often will see this message. Power uses are used to pressing the Alt key in applications like Photoshop, Premiere Pro, or Word to view the list of available hotkeys. This parallel is also made for Mac users who are used to pressing the '?' key on websites. This allows power users to quickly and easily find the hotkeys. These hotkeys act as shortcuts to easily 
+At the bottom of the page, in the footer, the user is shown that if they press 'Alt', 'Option', or '?' it will display keyboard shortcuts. Users who use the application and explore it often will see this message. Power uses are used to pressing the Alt key in applications like Photoshop, Premiere Pro, or Word to view the list of available hotkeys. This parallel is also made for Mac users who are used to pressing the '?' key on websites. This allows power users to quickly and easily find the hotkeys. These hotkeys act as shortcuts to easily
 
-This feature allows the use of shortcuts fr expert users implementing rule two.
-Rule 2 Shortcuts for expert users
-Rule 5 Shortcuts ignored while typing or holding Ctrl or Cmd
-Rule 7 User shows and hides the overlay, or can choose to have the overlay always visible
+The hotkeys feature allows the use of shortcuts for expert users, allowing them to faster navigate through the website, implementing rule two. The shortcuts are also ignored when users are holding control and command allowing them to still use the regular browser hotkeys. The user is also able to use the '?', 'Alt', and 'Option' keys to show or hide the overlay. If the user chooses to keep the overlay, it will stay on their screen for as long as they want. This supports the user's internal locaus of control and implements rule seven.
 
 = Group Contributions
 Anddrew Roddy created the repository and initial README. He setup the structure of the SvelteKit project and organized the routes to navigate through the website. Then, he added all 11 of the bagel images that you see in the repository, made and styled the bagel card components in the order page. Continued to improve the CSS for the order page by adding effects to the card. He built the shopping cart application with a working total, and saved the cart to local storage. Created a global color theme to have consistent looking pages. Made shortcuts for the application to make it more accessible to a variety of users. Fixed hotkey bugs like shortcut firing while typing in input field, binding the option key as an alternative to alt for mac users. Wrote the installation instructions and created the report fro submission.
