@@ -1,0 +1,25 @@
+name: Build report
+
+on:
+  push:
+    branches: ['**']
+    paths:
+      - 'report/**'
+      - '.github/workflows/report.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: typst-community/setup-typst@v4
+
+      - name: Compile report
+        run: typst compile report/main.typ report.pdf
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: report
+          path: report.pdf
