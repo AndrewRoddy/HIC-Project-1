@@ -6,7 +6,8 @@
     buyBagel,
     cart,
     removeItem,
-    modifyQuantity
+    modifyQuantity,
+    undoCartChange
   } from '$lib/state/cart.svelte';
 
   const path = $derived(
@@ -28,6 +29,50 @@
   const cartItem = $derived(
     cart.items.find((item) => item.id === id)
   );
+
+  let feedback = $state('');
+  let canUndo = $state(false);
+
+  function addToCart() {
+    if (!page.url.searchParams.get('id')) return;
+
+    buyBagel({
+      id,
+      name,
+      img: path,
+      price
+    });
+
+    feedback = `Added ${name} to your cart.`;
+    canUndo = true;
+  }
+
+  function deleteItem() {
+    if (!cartItem) return;
+
+    removeItem(cartItem.id);
+
+    feedback = `Removed ${name} from your cart.`;
+    canUndo = true;
+  }
+
+  function changeQuantity(change: number) {
+    if (!cartItem || cartItem.quantity + change < 1) return;
+
+    modifyQuantity(cartItem.id, change);
+
+    feedback = '';
+    canUndo = true;
+  }
+
+  function undoChange() {
+    const restored = undoCartChange();
+
+    feedback = restored ? 'Your last cart change was undone.' 
+    : 'There is no cart change available to undo.'
+
+    canUndo = false;
+  }
 </script>
 
 <h1 class="page-header">Bagel Info</h1>
@@ -44,7 +89,7 @@
           <button
             type="button"
             disabled={cartItem.quantity <= 1}
-            onclick={() => modifyQuantity(cartItem.id, -1)}
+            onclick={() => changeQuantity(-1)}
             >-</button
           >
 
@@ -52,7 +97,7 @@
 
           <button
             type="button"
-            onclick={() => modifyQuantity(cartItem.id, 1)}
+            onclick={() => changeQuantity(1)}
             >+</button
           >
         </div>
@@ -60,7 +105,7 @@
         <button
           class="delete-button"
           type="button"
-          onclick={() => removeItem(cartItem.id)}
+          onclick={deleteItem}
         >
           Delete
         </button>
@@ -70,17 +115,20 @@
         class="add-to-cart-button"
         type="button"
         disabled={!page.url.searchParams.get('id')}
-        onclick={() =>
-          buyBagel({
-            id,
-            name,
-            img: path,
-            price
-          })}
+        onclick={addToCart}
       >
         Add to Cart
       </button>
     {/if}
+    <div class="bagel-feedback">
+  <p role="status">{feedback}</p>
+
+  {#if canUndo}
+    <button type="button" onclick={undoChange}>
+      Undo last change
+    </button>
+  {/if}
+  </div>
   </div>
 </div>
 
@@ -171,5 +219,28 @@
     font-family:
       'Trebuchet MS', 'Lucida Sans Unicode',
       'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  .bagel-feedback {
+    margin-top: 1em;
+    color: var(--text);
+  }
+
+  .bagel-feedback p:empty {
+    margin: 0;
+  }
+
+  .bagel-feedback button {
+    min-width: 80px;
+    min-height: 38px;
+    padding: 0.5em 1em;
+    border: 1px solid var(--accent);
+    border-radius: 1em;
+    background-color: var(--surface);
+    cursor: pointer;
+    font-family:
+      'Trebuchet MS', 'Lucida Sans Unicode',
+      'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: var(--text);
   }
 </style>

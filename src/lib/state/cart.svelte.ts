@@ -15,6 +15,50 @@ export const cart = $state({
 	items: [] as CartItem[]
 });
 
+let previousItems: CartItem[] | null = null;
+
+let confirmedCheckout: {
+	items: string;
+	free: number;
+} | null = null;
+
+function rememberCart() {
+	previousItems = $state.snapshot(cart.items);
+	confirmedCheckout = null;
+}
+
+export function undoCartChange() {
+	if (previousItems === null) return false;
+
+	cart.items = previousItems;
+	previousItems = null;
+	confirmedCheckout = null;
+	saveCart();
+
+	return true;
+}
+
+export function confirmCheckout(free: number) {
+	confirmedCheckout = {
+		items: JSON.stringify($state.snapshot(cart.items)),
+		free
+	};
+}
+
+export function consumeConfirmation(): number | null {
+	const confirmation = confirmedCheckout;
+	confirmedCheckout = null;
+
+	if (
+		confirmation === null ||
+		confirmation.items !== JSON.stringify($state.snapshot(cart.items))
+	) {
+		return null;
+	}
+	
+	return confirmation.free;
+}
+
 function isCartItem(value: unknown): value is CartItem {
 	if (typeof value !== 'object' || value === null)
 		return false;
@@ -62,6 +106,8 @@ function saveCart() {
 }
 
 export function buyBagel(bagel: BagelData) {
+	rememberCart();
+
 	const exists = cart.items.find(
 		(item) => item.id === bagel.id
 	);
@@ -79,13 +125,18 @@ export function buyBagel(bagel: BagelData) {
 }
 
 export function removeItem(id: number) {
-	cart.items = cart.items.filter((item) => item.id !== id);
+	if (!cart.items.some((item) => item.id === id)) return;
 
+	rememberCart();
+	cart.items = cart.items.filter((item) => item.id !== id);
 	saveCart();
 }
 
 export function clearCart() {
 	cart.items = [];
+	previousItems = null;
+	confirmedCheckout = null;
+
 	saveCart();
 }
 
@@ -107,22 +158,12 @@ export function getPrice() {
 }
 
 export function modifyQuantity(id: number, change: number) {
-	// Gets the item
 	const item = cart.items.find((item) => item.id === id);
 
-	// If no change, don't change anything
-	if (change === 0) return;
+	if (!item || !Number.isInteger(change) || change === 0) return;
+	if (item.quantity + change < 1) return;
 
-	// If the item is not in the cart already
-	if (!item) return;
-
-	// If negative change, make sure there is enough in the cart
-	if (change < 0 && item.quantity <= Math.abs(change))
-		return;
-
-	// Modifies the number in the cart by that value
-	item.quantity = item.quantity + change;
-
-	// Saves the change in the cart
+	rememberCart();
+	item.quantity += change;
 	saveCart();
 }
