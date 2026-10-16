@@ -45,43 +45,58 @@
 <style>
     .page-header {
         color: var(--text);
-        text-align: left;
         padding-left: 0.25em;
         font-size: 3.5em;
     }
 
     .about {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 32px 40px;
-        align-items: start;
-        padding: 1em;
-        padding-left: 1.5em;
+        padding: 1em 1em 1em 1.5em;
+    }
+
+    .desc,
+    .story {
+        font-size: 1.5em;
     }
 
     .desc {
-        min-width: 0;
+        display: flex;
+        flex-direction: column;
         color: var(--text);
-        font-size: 1.5em;
-    }
-
-    .desc p {
-        margin: 0 0 1em;
-        line-height: 1.7;
-        color: var(--text-muted);
-    }
-
-    .founders {
-        
-    }
-
-    .f-list {
-        list-style: none;
     }
 
     .story {
-        min-width: 0;
-        color: var(--text);
-        font-size: 1.5em;
+        color: var(--text-muted);
+    }
+
+    .desc p,
+    .story p {
+        margin: 0 0 1em;
+        line-height: 1.7;
+    }
+
+    .founders {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .f-list {
+         display: flex;
+        flex-direction: column;
+        gap: 0.75em;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        
+    }
+
+    @media (max-width: 700px) {
+        .about {
+            grid-template-columns: 1fr;
+        }
     }
 </style>
