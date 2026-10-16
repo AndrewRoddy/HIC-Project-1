@@ -1,8 +1,14 @@
 <script lang="ts">
   import { resolve } from "$app/paths";
+  import { onMount } from "svelte";
+  import { rewards, loadRewards } from "$lib/state/rewards.svelte";
+
+  onMount(loadRewards);
 </script>
 
-<h1 class="page-header">Welcome to Bagl!</h1>
+<h1 class="page-header">
+  {rewards.name ? `Welcome back, ${rewards.name}!` : 'Welcome to Bagl!'}
+</h1>
 
 <div class="home">
   <section class="mission" aria-labelledby="mission-title">
@@ -152,7 +158,7 @@
     font-family:
       'Trebuchet MS', 'Lucida Sans Unicode',
       'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 1em;
+    font-size: 1.2em;
   }
 
   .action-button:hover{
