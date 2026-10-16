@@ -21,7 +21,7 @@
 = Introduction
 The app that we created is Bagl. This is an application that lets users purchase bagels and earn rewards! It also features hotkeys and an order history page so user's and view their previous orders. Our intended users are anybody who is interested in buying a good bagel. 
 
-We created an application with the goal of fully implementing Schneiderman's 8 golden rules.
+We created an application with the goal of fully implementing Schneiderman's 8 golden rules. We chose to make an online ordering app because it workflow that needs feedback and error prevention.
 
 = 8 Golden Rules
 Schneiderman's 8 golden rules are:
